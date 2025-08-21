@@ -1,0 +1,54 @@
+Everything in JS happens in a execution context.
+Execution context -- Memory -> Variable environment -- stores var and data in key value pairs.
+-- Code -- Thread of execution. -- executed one line at a time.
+
+JS is a synchronous single threaded language. -- One command at a time in a the order(in sync).
+
+Memory creation phase and code execution phase -->
+
+var n = 2;
+function square (num) {
+    var ans = num * num;
+    return ans;
+}
+
+var square2 = square(12);
+
+Memory creation phase -- 
+When a variable is created it stores the value as undefined in memory place.
+When a function created it stores the entire code of the function. 
+
+Code execution phase --
+Now in the code execution phase the value of the variable is stored in place of undefined.
+Nothing to do in place of function.
+
+Again in case of function invocation -- a new execution context is created. -- earlier it was running in the global execution context. the context changes on function invocation.
+
+Now for function -- 
+Memory creation for function -- num and ans var created and undefined value assigned.
+Code execution -- Function runs line by line -- value of num brought and its value updated - ans calculated - ans value changes from undefined to value calculated - return then returns the value of ans from local memory -- The undefined value of square 2 then changes to the returned value.
+
+As soon as we return the value the context of the function is deleted.
+
+Callstack -- JS has its own call stack for managing all the execution contexts. At bottom is the global execution context and anytime a new execution context is created its put on top of it. and then pushes it out again when the function is returned.
+Callstack also manages the order of execution of execution contexts. And its also called in diffn names like -- program stack, machine stack, execution stack etc.
+
+HOISTING -- 
+
+getName()  -- in most languages calling the function before function declaration gives us error, but its not the case in JS
+console.log(getName) -- Prints the function.
+console.log(x);
+
+// console.log(x); // This will log 'undefined' due to hoisting
+var x = 5;
+
+function getName() {
+    console.log("Hello, World!");
+}
+
+*JS skims through the code and memory is allocated for the variables defining them as undefined before any value is stored within them.
+*In case of functions the whole code is put in.
+
+If the value of x is no where in the program but we try to print x then it gives error that x is not defined. But if in any part of the program x is present then although on printing first it does not get the value of x but it prints 'undefined', as x will be defined in the memory, although yet it cannot get the exact value of x.
+
+If we write the function as arrow function then it acts as a variable and not as a function. -- it stays undefined on 

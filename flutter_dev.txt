@@ -1,0 +1,696 @@
+Widget build()-- helps in building the app and refreshes easily on hot reload.(like stateless).
+** ON HOT RELOAD only the build method gets run.
+
+Expanded class-- child of row or column and it extends to fill the space in the main axis.
+It can have only a single child.
+flex--tells how much space a expanded widget will take compared to other expanded widgets.
+Image.asset / Image.network -- easy way to inclue a image in the app. 
+CTRL + Q-- tells us about the widget details
+ALT + ENTER-- tells us about the widget actions.
+
+TextButton()-- makes a generic button.
+onPressed()--name of the function {contains the action of the button on being pressed.}-- it is  a generic function. 
+Calling the function-- onPressed()
+
+** USE Dart pad for writing code before applying to app. 
+Dart-- Statically typed language. JavaScript -- Dynamically typed language.
+-- Datatypes in dart --String,int,double,bool and dynamic
+variable creation-- var keyword.  Using variable -- '$' before. -- string interpolation
+for e.g name = 'Ronit' 
+TO CHANGE VARIABLE TO DYNAMIC IN DART -- only type -- var (name of variable); -- then it dynamically assigns the value to the variable.
+
+Stateless widget -- widget whose state is not meant to change.
+Stateful widget-- widgets whose state can change.
+stful -- used to create a stateful widget 
+
+SetState() func -- when used calls the build function directly and then sees where the changes occurred and applies them accordingly. Or else hot reload has to be done every time to apply the state.
+SetState marks every position as dirty where changes have occurred and then applies the changes to the places.
+
+*** ALWAYS RERUN APP AFTER ADDING NEW WIDGETS WHEN THE CODE IS NOT INSIDE A STFUL OR STLESS WIDGET
+
+Dart Packages -- Use packages with higher scores or see if they are created by the official flutter team -- then trustworthy 
+Resolving Dependencies in pubspec.yaml file -- exact name of the package : ^ version.  ^-- helps to select any version that begins  with the first no.
+E.g - ^(3.7.1) -- uses any version starting with 3. And whenever there is a major update then the versions first no is always changed and thus then the new package version has to be selected or else the app may break.
+
+Flutter Packages--
+TO add new  write -- flutter pub add (name of the package)
+use the website pub.dev
+1st -- get dependencies and download package
+2nd -- write the import statement from the website in the code and then use package.
+
+For Audio Player-- I used audioplayers package. If version mismatch error given change the version of the required fields as given in the flutter run space.
+
+Then to use the package--
+ final player = AudioPlayer();
+ player.play(AssetSource('name of file');
+
+AssetSource directly looks for the file in the asset folder so no need to mention asset/ in the path to the file and can directly write the file name in the path.
+
+Also be sure to store the Audio files in a assets folder.
+
+For user defined functions in flutter -- write the 'required' keyword before writing the datatypes in the attribute section of the functions. For eg -- func_name(required Color color){};
+Also during the function call -- call like func_name(color: Colors.red),
+
+return type of the function depends on the return type of the widget it returns. For eg-- Expanded widget has a return type of Expanded.
+
+=> Arrow syntax. -- Fat Arrow 
+For eg-- int add(){return a+b}  is same is int add() => a+b; Arrow gives the function what to do and then returns the value.
+** Arrow syntax only works when you have only one line of instruction in the function.
+
+TODO -- helps us to keep track of our works to do on the app.
+
+dart fix -- helps to find issues in our project
+dart fix --dry-run -> shows issues without changing them
+dart fix --apply -> applies the proposed changes
+
+Class usage in flutter --
+We can create a class and store properties in it along with methods and then implement them in our code.
+E.g -- class Sky{
+ String color; int Height;
+ void weather(String weatherType)
+}
+And we can use them as -- Sky S1= new Sky();
+S1.color = 'Blue';
+S1.Height = 100;
+S1.weather('Windy');
+
+***DART IS A OBJECT ORIENTED LANGUAGE.
+Abstraction , Encapsulation , Inheritance , Polymorphism
+
+In Dart we make something private by adding a underscore in front of it.
+For eg- _questionBank
+
+Use 'extends' keyword to inherit classes from other class.
+Use '@override' keyword to override an inherited function from a different class.
+Eg -   @override 
+	void drive(){}; // helps in creating a different definition of the function.
+Use 'super' keyword to call a method or variable of the parent class.   
+
+Constructors -->
+class Human{
+double height;
+Human() {} --> default constructor
+Human({double stheight}){ --> parameterized constructor
+height=stheight; OR
+this.height = stheight;}
+
+this.height = height; --> this keyword used to refer to the parameter of the object created.
+this can also be used like --> Human({this.height , this.weight}); --> is similar to this.height=height and this.weight=weight --> its a shortcut.
+the {} used inside Human({}) specifies that when the object is created the names height and weight have to be mentioned. --> Human h1 = Human(height: 20, weight: 15); makes it easy to understand.
+
+FLUTTER THEMES -->
+theme : ThemeData()-->
+appBarTheme: AppBarTheme() --> used to customize appbar
+scaffoldBackgroundColor --> used to change background color
+
+ThemeData.dark().copyWith(...) --> Copy dark theme except specified parts inside the braces.
+
+Theme( data: ThemeData(...) ) --> Wrap a widget in theme then helps to set theme of it.
+When using BoxDecoration() --> dont use color property outside as its already present in it. color: --> is a shorthand of that property only.
+
+**SingleChildScrollView() --> Used to created scrollable content... wrap content within the widget.
+
+For repeating widgets -->
+Extract the widget with flutter outline then name it. Nxt use the named reference (or object) instead of writing the entire widget again and again.
+
+KEY class -- used to keep track of widgets for eg in case of moving widgets in animations.
+@required keyword is used to make a property must required. For eg --> properties of a custom constructor.
+
+Immutable -- cannot be changed. In general the widgets in flutter are immutable. Stateless widgets are immutable to update them we have to create a new widget in its placer whereas the earlier widget gets destroyed.
+
+We can make variables immutable by using the 'final' keyword.
+FINAL v/s CONST -->
+
+final can be set only once.
+const cannot be assigned to var who have to be determined after execution of code. for eg to get dimensions of a switch first it has to be created using the code so then its var cannot be assigned to a const ands in that case a final is used.
+
+For repeating widgets --> Extract Widget and then used the extracted widget created in place of it.
+For creating own data for the widgets --> declare final variables and change the constructor according to it. for eg --> final IconData icon; Classname({required this.icon}); --> constructor
+For error --> const value has to be assigned --> Remove const from widget. else everything in the widget has to be declared constant.
+
+GestureDetector --> Helps in detecting gestures on an item and provides functionality for the items. --> can be used for detecting gestures on containers.
+For eg -- onTap: (){ setstate((){...functionality...})
+
+ENUMS -- Enumeration
+enum EnumName {typeA, typeB, typeC} -- enum keyword
+EnumName.typeA -- for calling
+Enum cannot be declared inside a class.
+
+Dart ternary operator :
+Condition ? DoThisifTrue : DoThisifFalse
+
+eg --> bool canbuyalcohol = myAge > 21 ? true : false; --> Advantage of ternary operator as it can have multiple expressions in the left side of the statement
+
+DART functions as objects -->
+For eg -- int calculator(int a , int b , function calculation) --> calculation is used to call the necessary function.
+{return calculation(a,b)};
+for calling--> calculator(5,7,add) --> add function is called here. OUTPUT: 13.
+
+** We can also set function as value of a function type variable.
+eg --> function calculator = (int a , int b , function calculation){return calculation(a,b)};
+
+**VoidCallBack onPressed --> better to use than declaring onPresed as a function. Its very useful mainly for event handling and callbacks in widgets.
+If onPressed is declared as a function and a setstate() function is called in it then theres a chance of the widget not being built fully. Setstate is called before the parent widget can be built fully and it calls for a rebuild which gives rise to error.
+
+**start constants names with 'k' -- kconstantname --> helps in maintaining list of constants as flutters own constants also start with k.
+**when using baseline type in alingment in row or colum need to specify the text baseline type after that so that no error arises. --> textBaseline = TextBaseline.alphabetic/ideographic.
+
+intvalue.toString() --> converts the int value to String data.
+
+DART SLIDERS --> provide value and onPressed func() -->The slider passes the new value to the callback but does not actually change state until the parent widget rebuilds the slider with the new value.
+SliderTheme.of(context).copyWith() --> Helps us to get an instance of the theme of the current widget. Context refers to build context i.e. the current state of the app.
+
+FLUTTER more invested in composition of widgets rather than inheritance of widgets. In his way widgets are made from scratch and apps run faster.
+
+Flutter suggests that we dont use more than one button per page. Thus here the composition of buttons comes into play. CTRL + click on any widget takes us to the source code of that widget as in flutter all the code in open sourced.
+
+General code for button -->
+class RoundIconButton extends StatelessWidget {
+  RoundIconBtton({this.child})
+  final Widget child; --> for adding a child parameter in the widget.
+  @override
+  Widget build(BuildContext context){
+    return RawMaterialButton(
+	child : child,
+	//add propoerties
+)}}
+
+ShapeBorder -- diffn borders for shapes , fillColor -- for colour , sizeConstraints -- for setting size
+*Button without the onpressed function is in inactive state.
+
+**ROUTING in flutter -->
+
+*Dont forget to import the pages at the starting of the project.
+For setting page as home/base/starting page-->
+home: const InputPage(),
+
+For going forward to next screen -->
+onPressed: () {
+//Navigator.push (context , route) (syntax) --> Navigator.push(context , MaterialPageRoute(builder: (context){return Screen2();})) (//name of next page file)
+} --> creates and returns an object of the next page (here screen2).
+
+For going back to previous screen -->
+onPressed () {
+Navigator.pop(context);
+}
+
+Navigating with names routes -->
+*routes --> helps in creating a map of the routes in the app.
+
+initialRoute: '/', -> inplace of home it is used to define starting/home page of app. **If initialRoute: is used we cant use home property as they conflict with each other
+routes: {
+  '/': (context) => Screen0(),
+  '/first': (context) => Screen1(),
+  '/second': (context) => Screen2(),
+}
+IF WE USE the forward slash format one of the routes has to be just '/' --> signifying the home page. If not there then the App crashes.
+to use the routes -->
+*** Navigator.pushNamed(context, '/first'); --> syntax(context, 'string of route created')
+**Use named routes when app has large no of different screens then its easier to keep track of them. Create the routes dictionary in the main(home) page and keep connecting from there.
+
+Flutter cannot help us in any errors in strings thus we can assign a String variable in the screens and refer to them as Pagename().id in place of a string like 'pagename' in the map created for routing. Thus routes:{Pagename().id : (context) => Pagename() } --> syntax.
+
+We can also just make the String id variable static and refer it as a class variable Pagename.id --> This helps us not make a page object everytime the viriable is referred.
+
+Map--> basic syntax -->
+ Map <String , int> rollbook ={
+  (key : value)
+ 'Ronit' : 2205236,
+ 'Poneer' : 2345234,
+ 'Pooshyy' : 2245876,
+};
+
+for getting access --> rollbook ['Ronit'] --> access the value from the dictionary.
+for adding new item to the map/dictionary --> rollbook ['Roomie'] = 2223289
+for length --> rollbook.length  for value --> rollbook.values  for keys --> rollbook.keys
+
+**sync nd async functions in flutter-->
+sync --> waits for the step to complete;
+async --> doesnot have to wait for the step to complete. It lets the step to continue to execute and moves on to the next step in the mean time.
+
+Duration --> Keyword is used to set duration variable in dart.
+sleep(duration) --> a synchronous function that uses duration parameter to put any method to sleep for specific time before executing. Its synchronous so it does not let anything else execute before it completes execution.
+
+Future.delayed() method however is asynchronous and allows other code lines to execute while it waits for its delay time.
+method() async{} --> (await) here async is a modifier used to make the method async in nature. then it allows us to use the await function to wait for the required function to complete.
+
+**Future --> does not exist now but when the method is completed then it will exist. Its like a promise that a certain method will execute. Similar to promises in JavaScript.
+Future<String> --> says that its a method which will give a String in future. And printing a future method directly gives an instance of Future<String> as that method has not completed yet.
+
+in Stateful widgets --> diffn methods can be used based on diffn parts of its timeline. like -->
+void initState(){
+super.initState();
+print("initState called");      **Use when need something to happen when the widget gets created at first.
+}                           --> init method called as soon as the stateful widget is created and entered into the widget tree.
+
+build method --> called when the widgets starts getting built. and called again and again when any changes made in the widget. **Use when need something to happen each time when widget built.
+
+void deactivate(){
+super.deactivate();
+print("The deactivate method called");      **Use when need something to happen when the widget gets destroyed.
+}                                       --> deactivate method is called as soon as the stateful widget gets removed from the widget tree. --> For eg -- Navigator.pop() --> pops the current page and goes back.
+
+DART EXCEPTION HANDLING -->
+ Dart has method called parse() --> helps to convert datatypes.
+ for eg --> double.parse(String) --> converts string to double.
+
+try{ //something that can fail } and catch(e) --> used to handling exceptions which may otherwise lead to the app being crashed.
+we can write alternative code for the error part inside the catch block --> it runs instead if error is found.2
+
+Null aware operator --> somevar ?? defaultValue --> checks if var null then it uses the default value.
+**THROW keywqord --> throw '//error message' --> is used to throw a custom exception. 
+When using async and await to get the data from a method then that method cannot give data if declared void. It has to be declared Fututre<void>.
+
+APIs --> Like bank take a password from you , then accept request , verify and give result.
+For Weather APIS --> use the get method from the geolocator and provide it with a URL containing the API key.
+
+Use HTTP package for getting data from the web. The 'get' keyword is used to get data from a url.
+The get gives the output in form of a Response class. The weather data is inside the response.body of the class. Response class --> An HTTP response where the entire response body is known in advance. (Response is a class)
+
+Response statuscodes --> response.statusCode --> code for a particular outcome. eg --> code 200 and anything in 200-299 means successful. Anything in 400-499 means client error, eg -- 400 means bad request. Anything in 500 means Server error.  HTTPS source code cheatsheet --> 
+From Server to User --
+1** Hold on , 2** Here you go, 3** Go away, 4** You fucked up, 5** I fucked up.
+
+API providers provide data in 2 formats in XML(extensible markup language format) or JSON format. 
+XML--> like HTML --> <key>value</key> key value pair.
+JSON --> also key value but like java --. {key : value} -- use JSON viewer plugin to easily view json format in web.
+
+For accessing different parts of the data --> import 'dart:convert'
+use jsonDecode{data}['keys'] format for accessing the data.
+In data --> if third bracket [] there then thats a list then for accessing that part of the data we have to write index of the list value first and then we can access the data.
+For eg --> jsonDecode{data}[0][id] or for easy access -- use the JSON viewer and copy the path from there and insert them accordingly in the decoder.
+var --> dynamic datatype. JSON Decoder decodes the data to a dynamic datatype as it doesnt not know what type of data it will be beforehand.
+
+**late modifier in flutter is used to declare a non-nullable variable that will be initialized after its declaration.
+**If at anythime the output comes as a instance of Future --> then use async and await in that method before printing the output.
+
+A state object knows which stateful widget it belongs to.
+Inside a state object widget can be used to refer to its configuration. A State object's configuration is the corresponding StatefulWidget instance. This property is initialized by the framework before calling initState.
+
+In OpenweatherAPI if temp needed in celcius (as original is in Kelvin) we have to add &units=metric or &units=imperial acc to our need.
+In string if we want to input var like location.latitude then only using $ sign doesnt work as it only identifies the first variable--> $location. Thus in this case use {} to input the complete variable.
+
+** If a string contains a single quote or a appostrophy then we can use double quote to initialize the string.
+** var is a dynamic data type.
+
+TextField() is used to create a text field.
+decoration:InputDecoration() --> used for decoration of the text field. --> boolean filled , fillColor etc.
+hintText --> used to provide suggestive texts for text fields.
+onChanged: (value){...actions...} --> To deal with any changes in the text field --> creates an annonymous callback.
+
+In Navigator.pop we can send back a value too along with the context;
+Navigator.pop(context, value);  --> And this value goes back as the output of the Navigator.push func on the last page. Then we can store the value and use it.
+** The output is of Future type as we dont know when the output will come. So we have to use async and await there.
+
+Static Keyword in flutter --.
+Helps to refer to variables or methods in class without creating an object. Usually used for global variables which remain same in all cases. EG --> sidesofSquare = 4.
+
+FLUTTER ANIMATIONS -->
+Hero Animations --> Shared elements between pages are animated as the user changes from one page to the next.
+
+Hero Widgets --> 2 one on first screen and 2nd on 2nd screen 
+A shared Tag property.--> Must match between both pages.
+Navigator-based Screen Transitions.
+
+The animation occurs according to the changing property for eg --> size=60 on first page and then size = 200 o 2nd page.
+The same animation can be applied to all the elements with the same tag.
+
+Custom Animations -->
+We need three things --> A ticker, A animation controller and An animation value.
+
+Ticker whenever ticks it creates a new set state for the animation to work... like flipping through the pages of a flip book
+Animation controller --> Manager which tells the animation to start to stop to go forward to loop back and all others.
+Animation Value --> Does the animation. Goes from 0 to 1 generally and in its value change creates the animation.
+
+late AnimationController controller;
+We update the class Name extends State line as with SingleTickProviderStateMixin for a single animation use or as TickProviderStateMIxin when to be used for multiple animations.
+It then updates the class as the ticker provider.
+Like --> 
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+
+MIxins add diffn abilities to the class.
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      vsync: this, // ticker is provided by the class.
+      duration: Duration(seconds: 1),
+    );
+  }
+
+controller.forward(); --> for our animation to go forward.
+Creates a no. and with each tick from the ticker, the no increases in the range 0 to 1 generally.
+In 1 sec the ticker ticks for 60 times and then the no. reaches from 0 to 1 in 60 steps.
+
+controller.addListener(() { setState(() {}); --> recreates the App with every state of the animation --> ***CRUCIAL FOR THE ANIMATION TO WORK.
+print(controller.value)}); --> creates a callback and listens to the value of the ticker.
+
+An ex of animating the backgorund -->backgroundColor: Colors.red.withAlpha((255 * controller.value).toInt()), --> Changes the opacity of the background with the ticker.
+
+Text('${controller.value.toInt()}%')  --> can be used to create a loading like text animation.
+
+We can animate the size of an image or like logo by using the controller.value in place of its height parameter.
+ Hero(tag: 'logo',
+ child: Container(
+ child: Image.asset('images/logo.png'),
+ height: controller.value,),),
+
+CurvedAnimation Class --> is useful when we want to apply non-linear Curve to an animation object eg if we want different curves for when the animation is going forward vs when it is going backward.   --> See the flutter document for visuals regarding the diffn curves.
+
+Animation animation;
+animation = CurvedAnimation(parent: controller, --> parent always has to be the defined controller of the animations.
+ curve: Curves.decelerate); --> The type of Curve animation chosen.
+Then we use the animation.value in place of controller .value for the animations to work.
+
+*** ALWAYS WHEN USING CURVED ANIMATIONS THERE CAN BE NO UPPERBOUND AND IT HAS TO BE 1 or the app will crash. As Curved animations cannot operated above upperbound 1
+
+controller.reverse(from: 1.0); --> Used for reversing the animation.
+
+animation.addStatusListener((status) {
+      print(status);
+    });  --. Creates a callback for showing the status of the animation.
+** The end of normal forward animation is Complete as shown by the status and the end of reverse animation id Dismissed
+
+animation.addStatusListener((status) {
+      if(status == AnimationStatus.completed){    //after forward animation is completed.
+        controller.reverse(from: 1.0);    //animation is reversed
+      }
+      else if (status == AnimationStatus.dismissed){    //after reverse animation is complete
+        controller.forward();    //animation is forwarded
+      }
+    });    //creates a infinite loop of animating.
+In this way status can be used to control the animations on a page.
+
+*** Normally the animations keep running even after the page is changed. Thus to stop this background usage of the resources, its very important to dispose the animation once the page is disposed. Thus for this we implement the dispose function.
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+TWEEN animations --> Used for animating properties in between values -->
+ animation = ColorTween(
+      begin: Colors.white,
+      end: Colors.redAccent,
+    ).animate(controller);
+    controller.forward();    --> Animates the color from white to red. can be applied like backgroundColor : animation.value --> Returns a color value.
+
+*MIXINS --> a way of reusing a class's code in multiple class hierarchies , free from extending.    --> Adding features to the class.
+Intertance in class structure in dart -->
+class Fish extends Animal {
+@override    --> overrides the super class function.
+void move(){
+ super.move();    --> runs the upper class from which this class inherits.
+ print("by swimming");
+}
+}
+
+But we can only inherit from one class normally as If we inherit from diffn classes having the same functions then the extending class cannot undertand which function to implement --> 
+To fix this  --> MIXINS are used
+
+mixin CanFLy{
+ void fly(){
+  print("Changed Position by Flying");
+ }
+}
+
+Thus we can then implement the mixings in the class using the 'with' keyword like -->
+ class Duck extends Animal with Canfly {}
+
+Thus we can directly use the mixings with the class even without extending from another class.
+Also it imrpoves the maintainability of the class. --> An changes made in the mixins are directly reflected in the classes extending from them and do not need to change for every class seperately.
+
+Pre packed animations --> Flutter sequence , Rubber , Sprung , Animated Text Kit --> from flutter packages. For eg -->
+
+ SizedBox(
+                  child: DefaultTextStyle(
+                    style: TextStyle(
+                      fontSize: 45.0,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.black,
+                    ),
+                    child: AnimatedTextKit(
+                      animatedTexts: [TyperAnimatedText('WeChat')],
+                    ),
+                  ),
+                ),
+
+*** Remember that in buttons when passing a function to the onPressed parameter of the button ---> Always declare the func to be passed as VoidCallback() as onpressed only accepts functions without parameters and without return types. Only declaring as function is too broad for it.
+
+Use a TextField for creating text fields in flutter -->
+decoration : InputDecoration() --> for decorations --> Here creates a circular bordered text field. else textfield is normally just a underlined structure.
+TextField(
+              onChanged: (value) {
+                //Do something with the user input.
+              },
+              decoration: InputDecoration(
+                hintText: 'Enter your email',
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 10.0,
+                  horizontal: 20.0,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+                enabledBorder: OutlineInputBorder(    --> border which is always shown.
+                  borderSide: BorderSide(
+                    color: Colors.lightBlueAccent,
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+                focusedBorder: OutlineInputBorder(    --> border which is shown when the text field is in focus.
+                  borderSide: BorderSide(
+                    color: Colors.lightBlueAccent,
+                    width: 2.0,
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(32.0)),
+                ),
+              ),
+            ),
+
+*** We can change parts of a constant using the .copyWith(property to be changed) --> In this way we can use the same contants as we need without having to create diffn constants for diffn purposes.
+
+FireStore --> Add as documentation 
+Firestore.core is the base file (always have to add)
+Then we can use packages like cloudstore , auth etc. 
+
+**In text fields we can use obscureText: true  to hide passwords etc from common view. 
+**keyboardType: TextInputType.emailAddress, --> we can use thisa to define the keyboard type that opens up during text fields.
+
+USER AUTHENTICATION -->
+Firebase Auth --> 
+final _auth = FIrebaseAuth.instance; --> creates an authentication instance --> made private so that cant be changed from outside class.
+final newUser = _auth.createUserWithEmailAndPassword(email: email, password: password); --> creates user with email and password --> returns a Future type.
+Also remember to use async and await.  Can also use try-catch block to seek for errors.
+
+Use Form fields to validate text inputs like when inputting email , password etc.   --> Use TextFormField()
+final _formKey = GlobalKey<FormState>();
+
+Form(
+  key: _formKey,
+  child: Column(
+    children: [
+      TextFormField(
+        onChanged: (value) => email = value,
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return 'Please enter an email';
+          }
+          return null;
+        },
+      ),
+      TextFormField(
+        onChanged: (value) => password = value,
+        validator: (value) {
+          if (value == null || value.length < 6) {
+            return 'Password must be at least 6 characters';
+          }
+          return null;
+        },
+      ),
+      RoundedButton(
+        title: 'Register',
+        colour: Colors.blueAccent,
+        onPressed: () async {
+          if (_formKey.currentState!.validate()) {
+            try {
+              final newUser = await _auth.createUserWithEmailAndPassword(
+                email: email,
+                password: password,
+              );
+              Navigator.pushNamed(context, ChatScreen.id);
+            } catch (e) {
+              print(e);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Registration failed: $e')),
+              );
+
+For adding a spinner while the user is logging in or registering --> use modal_progress_hud package -->
+bool showSpin = false;
+Wrap the widget undr the scaffold level in the ModalProgressHUD(inAsyncCall: ) widget.
+Then use a setState() to make the showSpin true or false to show or stop the spinner accordingly.
+
+FireStore Implementation -->
+final _firestore = FirebaseFirestore.instance;
+ _firestore.collection('messages').add({
+                        'text': message,
+                        'sender': loggedInUser?.email,
+                      });    --> Add always accepts data in form a dict created from the variables as mentioned in the named collection from the firestore.
+
+ void getMessages() async {                                        --> used for getting the message documents from the firestore and showing them.
+    final messages = await _firestore.collection('messages').get();  --> Give us a future query type data.
+    for (var message in messages.docs) {
+      print(message.data()); //gives us the key value pair
+    }
+  }
+
+But normally the getMessages function has to be called everytime for seeing the updated messages and it doesnt show automatically as should be done in a messaging app. To fix this problem we use STREAMS.
+
+Streams provide us with a list of future objects. and when we subscribe to a stream it shows us any changes that occur in the database. Automatically show us the new messages and refreshes itself.
+List<String> --> many string objects present now.
+Stream<String> --> Future list of strings.
+
+  void messageStream() async {
+    await for (var snapshot in _firestore.collection('messages').snapshots()) {    --> snapshots() return a stream of QuerySnapshot(class from firebase which contains the data)
+      for (var message in snapshot.docs) {    --> to refer to the doc.
+        print(message.data());
+      }
+    }
+  }
+
+StreamBuilder --> turns streams into new widgets everytime new data comes through.  --> Used for displaying stream data.
+StreamBuilder(
+              stream: _firestore.collection('messages').snapshots(),
+              builder: (context, snapshot) {    // builds the contents everytime the data from the snapshots refresh. returns type AsyncSnapshot which is the most recent interaction with the Stream. This snapshot is of AsyncSnapshot type --> we access the data (QuerySnapshot) of the Stream through it --> then we access the docs through it containing the list of messages.
+
+AsyncSnapshot --> QuerySnapshot --> List of messages.
+                List<Text> messageWidgets = [];
+                if (!snapshot.hasData) {
+                  return Center(
+                    //simple spinner to show when we have no data.
+                    child: CircularProgressIndicator( 
+                      backgroundColor: Colors.blueAccent,
+                    ),
+                  );
+                }
+                final messages = snapshot.data?.docs;    --> This data refers to the QuerySnapshot and then retrives messages from it.
+                if (messages != null) {
+                  for (var message in messages) {
+                    final data = message.data() as Map<String, dynamic>;   --> converting to list.
+                    final messageText = data['text'];
+                    final messageSender = data['sender'];
+
+                    final widget = Text('$messageText from $messageSender');    --> Adding to the widget.
+                    messageWidgets.add(widget);
+                  }
+                }
+                return Column(children: messageWidgets);
+              },
+            ),
+
+LISTVIEW --> Scrollable list of widgets -->
+Flexible widgets --> Manages how the contents appear on the screen. for eg --> if a widget is of size 200 pixels but the screen space is not so much it can adjuct accordingly.
+
+Ser Auth rules for limiting access --> take auth required rules , add them to the rules part of the cloud firestore database and publish. Then check using simulation if working properly.
+
+Use Stack() --> widget when trying to create one layer on top of another layer in flutter.
+For eg --> creating a background image and adding a blur effect on top.
+
+Container( decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/background.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),    --> Process to create a background image.
+
+
+MACHINE LEARNING in FLUTTER -->
+
+Use Image picker package for picking and displaying images in flutter app.
+
+  File? image;
+  late ImagePicker picker;
+  @override
+  void initState() {
+    picker = ImagePicker();    --> Creating object.
+  }
+
+  pickImage() async {
+    XFile? pickedImage = await picker.pickImage(    --> Picking image from Gallery
+      source: ImageSource.gallery,
+      maxHeight: 500.0,
+      maxWidth: 500.0,
+    );
+    if (pickedImage != null) {
+      image = File(pickedImage.path);
+      setState(() {
+        image;
+      });
+    }
+  }
+
+  captureImage() async {
+    XFile? pickedImage = await picker.pickImage(    --> Picking Image from Camera
+      source: ImageSource.camera,
+      maxHeight: 500.0,
+      maxWidth: 500.0,
+    );
+    if (pickedImage != null) {
+      image = File(pickedImage.path);
+      setState(() {
+        image;
+      });
+    }
+  }
+
+Container(        --> Container for showing image.
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child:
+                      image == null
+                          ? Icon(        --> Shows the Icon when the Image is null i.e no image is present
+                            Icons.image_rounded,
+                            color: Colors.brown,
+                            size: 100.0,
+                          )
+                          : Image.file(image!),      --> Shows the image file. ! after shows thst image cannot be null.
+                ),
+
+  Labelling Text --> late ImageLabeler labeler;
+inside initstate() -->     final ImageLabelerOptions options = ImageLabelerOptions(
+      confidenceThreshold: 0.5,
+    );
+    labeler = ImageLabeler(options: options);
+Create a string --> results=""
+
+  performImageLabelling() async {
+    results = " ";
+    InputImage inputImage = InputImage.fromFile(image!);
+
+    final List<ImageLabel> labels = await labeler.processImage(inputImage);
+
+    for (ImageLabel label in labels) {
+      final String text = label.label;
+      final int index = label.index;
+      final double confidence = label.confidence;
+      print(text + "......" + confidence.toString());
+      results += text + "....." + confidence.toStringAsFixed(2) + "\n";
+    }
+    setState(() {
+      results;
+    });
+  }
+Then add a dispose() fuction to stop the working of the processor -->  labeler.close();
+Then we can show the results in a Text() widget --> along with necessary customizations.
+
+For mobile Tflite models are used for OWN DEVICE ML --> Model present inside our mobile app. Can perform without internet access. No latenncy --> Privacy --> Power consumption.
+
+Tensorflow models --> Tflite converter --> Tflite model file --> Can be used in mobile apps --> Java API/C++ API , Interpreter , Android Neural Networks API.
+
+InkWell widget is used --> for making child tappable. --> Gives diffn functionality.
