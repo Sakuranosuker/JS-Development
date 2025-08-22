@@ -1,2 +1,47 @@
 Javascript development -- 
 For getting random paragraph in html write lorem and press tab.
+* For changing the text content of any html text element use give an id=" " to the element. Then --
+document.getElementById("id").textContent = 'Hello';
+-- The elemt then show the string stored in it like this.
+
+let x; // declaration
+x = 123; // assignment 
+console.log(x)
+console.log(`You are ${x} years old`)
+console.log(typeof x)
+
+let food = "Burger" // Strings
+console.log(`Your favourite food is ${food}`)
+let flag = false // Boolean
+
+Operators  --> + - * / % etc. ** -- gives us the power of the digit. 2**3 gives us 8.
+++ , -- , 
+Precedence = Parenthesis --> ** (exponents) --> * / % --> + - -- Highest on the left side. 
+IF operators of similar precedence given then solve then from the left side.
+
+Taking UserInput --> Default for user input is String from the window promt.
+let username = window.prompt("Enter the username?");
+
+* or create a html button and take input from there.
+HTML part -->
+     <h1 id="UserH1"></h1>
+    <label>Username</label>
+    <input id="UserInput"><br><br>
+    <button id="UserSubmit">Submit</button>
+JS part -->
+	document.getElementById("UserSubmit").onclick = function(){
+		username =  document.getElementById("UserInput").value;
+		document.getElementById("UserH1").textContent = `Hello ${username}`;
+	}
+
+Typeconversion in JS -->
+x = String(x);
+y = Number(y);
+z = Boolean(z); // Gives true if theres any value given
+--> String can be converted to boolean to check if its empty or not. If string is empty then on converting to boolean it returns false else itreturns true. 
+
+On trying to type convert anundefined variable to number -- returns NaN.
+On trying to type convert anundefined variable to boolean -- returns false.
+On trying to type convert anundefined variable to string -- returns undefined.
+
+CONST --> making a variable const makes sure that  it cannot be changed after that or js gives us a error.
