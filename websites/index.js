@@ -68,3 +68,30 @@ document.getElementById("radiusSubmit").onclick = function(){
     circumference  = 2*pi*radius;
     document.getElementById("radiusShow").textContent = `Circumference found is: ${circumference}`;
 }
+
+//MATH OPERATIONS --
+
+// let x = 3.21;
+// let y = 2;
+// let z = Math.trunc(x);
+// console.log(z);
+// console.log(Math.pow(x,y));
+// console.log(Math.sqrt(x));
+// let a = 10;
+// console.log(Math.log(a));
+// console.log(Math.max(x,y,z))
+
+// let randno = Math.random() * 6;
+// console.log(randno)
+
+// const min = 50;
+// const max = 100;
+// let random = Math.floor(Math.random() * (max-min)) + min;
+// console.log(random);
+
+// IF - Statements --
+let age = 25;
+if(age>18)
+    console.log(`You can enter the site`);
+else
+    console.log(`You cannot enter the site`); 

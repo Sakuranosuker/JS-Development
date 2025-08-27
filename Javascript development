@@ -45,3 +45,29 @@ On trying to type convert anundefined variable to boolean -- returns false.
 On trying to type convert anundefined variable to string -- returns undefined.
 
 CONST --> making a variable const makes sure that  it cannot be changed after that or js gives us a error.
+
+MATH in JS --  its a built in object  in js providing diffn collection of math related properties and methods.
+console.log(Math.E) or console.log(Math.PI)
+
+Math.round() , .floor() , .ceil() , .trunc() , pow(x,y) , sqrt() , log() , sin() , cos() , tan() , abs() -- gives the absolute value ,
+sign(x) -- if x positive -- ans = positive , if x negative -- and = negative , if x -- 0  then ans = 0  
+Math.max(x,y,z) -- gives the max value. Math.min() -- min value.
+
+Random no in JS --
+let randno = Math.random() * 6; // gives random decimal nos. between 0 and 5.
+console.log(randno)
+
+Math.floor(math.random()) -- gives integer values.
+Math.floor(Math.random() * 100) + 1 -- gives nos between 1 and 100.
+
+Within range -->
+const min = 50;
+const max = 100;
+let random = Math.floor(Math.random() * (max-min)) + min;
+console.log(random);
+
+* We can make designing easier by changing the formatting of all the classes.
+
+IF - else if - else statement -- syntax like java. 
+Executes a collection of codes if the consition is true else executes a different collection of codes.
+-- use of && (and) and || (or) is also there.
