@@ -1,0 +1,20 @@
+body{
+    background-color: antiquewhite;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#title{
+    color: blue;
+}
+#roll_button{
+    color: white;
+    background-color: chocolate;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 4px;
+    width: 100px;
+    height: 50px;
+}
+#randno{
+    font-size: 5em;
+    font-weight: 500;
+}
