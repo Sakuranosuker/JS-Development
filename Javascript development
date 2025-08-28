@@ -71,3 +71,59 @@ console.log(random);
 IF - else if - else statement -- syntax like java. 
 Executes a collection of codes if the consition is true else executes a different collection of codes.
 -- use of && (and) and || (or) is also there.
+
+TERNARY OPERATOR --
+condition ? true statement : false statement;
+
+Switch case -- same syntax as java. -- Alternate for  if-else
+
+String methods in JS --
+let st = "Hello" -- 
+st.charAt( ) ; 
+.indexOf( ) -- index of first occurence of the letter
+.lastIndexOf( ) -- last index of
+.length -- not method -- returns length of string
+.trim() --- removes whitespaces after or before the string
+.toLowercase()    .toUppercase()    .repeat(3) -- repeat the same string 3 times.
+.startsWith(`H`) -- returns boolean , .endsWith() , .includes()
+.replaceAll("a" , "b") -- replaces all a's with b's
+.padstart(a , "0") -- adds padding to the string -- a = desired length of the string. and 0 is the character used to pad the string.
+.padEnd(a , "0") -- adds padding to the end of the string.
+
+** Using `print()` in JS -- prints the web page.
+
+STRING SPLICING --
+string.slice(0.4); -- starting index , ending index 
+string.slice(-1) -- starts at the ending index. and on decreasing the index further it moves towards the back.
+
+string.slice(0 , string.indexOf("A")); -- ending index is the first index where the character A is found.
+
+Method chaining --
+Calling one mathod after naother in one continuous line of code.
+let username = "  roNItdeY  ";
+username = username.trim().charAt(0).toUpperCase() + username.trim().slice(username.charAt(0)+1).toLowerCase();
+console.log(username);
+-- easier but can be complex when too long.
+
+Logical operators -- AND ( && ) , OR( | | ) , NOT( ! );
+== -- compares if values are equal.
+=== -- strict equality -- compares if values and datatypes are equal.
+!= -- inequality operator
+!== -- strict inequality operator
+
+LOOPS --
+while(){ } , do{ } , while() , -- Use do-while loop when trying to run the column of code atleast once.
+for(let i=0 ; i<10 ; i++)  -- continue -- skips that iteration of the loop and starts again from the next iteration.
+
+** window.alert( " " ) -- used for a alert message.
+** variable.isNaN -- used to check if its a number or not.
+
+Functions --
+
+function function_name( attribute1 , attribute2 ){  } 
+-- calling a fucntion -- function_name( )
+
+Eg -- loggin_info(username , password) { }
+
+Variable scope in JS -- where variable is recognized and accessible.
+local and global  -- functions cannot see inside other fucntions in JS.

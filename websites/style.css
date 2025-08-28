@@ -4,3 +4,10 @@ body{
     font-weight: 300;
     background-color: beige;
 }
+
+#mysubmit {
+    border-radius: 5px;
+    height: 30px;
+    width: 75px;
+    font-size: large;
+}
