@@ -1,4 +1,8 @@
 Javascript development -- 
+
+For connecting css file with HTML file -- <link rel="stylesheet" href="filename.css">
+For connecting js file with HTML file -- <script src="filename.js></script>"
+
 For getting random paragraph in html write lorem and press tab.
 * For changing the text content of any html text element use give an id=" " to the element. Then --
 document.getElementById("id").textContent = 'Hello';
@@ -127,3 +131,40 @@ Eg -- loggin_info(username , password) { }
 
 Variable scope in JS -- where variable is recognized and accessible.
 local and global  -- functions cannot see inside other fucntions in JS.
+
+# To use degree symbol in windows -- use ALT + 0176 on numpad.
+
+ARRAYS in JS --
+let fruits = ["apple" , "orange" , "coconut"];
+fruits.push("walnut"); -- pushes new element to back of the array
+fruits.pop( ); -- removes last element
+fruits.unshift("mango"); -- adds element to the top the arrray.
+fruits.shift( ); -- removes element from the top of the array.
+
+fruits.length -- gives length of the array.
+fruits.indexOf("apple") -- gives 0 as index of apple in array. If element doesnt exist then it returns -1.
+
+for(let i=0 ; i<fruits.length ; i++)
+{
+	console.log(fruits[i]);
+}
+for(let fruit of fruits) -- advanced for loop.
+{
+	console.log(fruit);
+}
+fruits.sort( ) -- sorts the array. -- ascending
+friuits.sort( ).reverse( ) -- sorts the array in reverse order. -- descending.
+
+SPREAD Operator -- ( ... )
+allows an iterable such as an array or string to be expanded into seperate elements.
+
+let numbers = [ 1 , 2 , 3 , 4 , 5 ];
+let max = Math.max(numbers) -- wrong as it cannot iterate to find the max no.
+so we use the spread operator -- max = Math.max( ...numbers );
+
+for strings too it can be used -- let name = "Ronit";
+let letters = [...name]; -- unpacks the string into seperate elements.
+console.log(letters);
+
+We can join them again by using the join method --
+letters = [...name].join("-");
