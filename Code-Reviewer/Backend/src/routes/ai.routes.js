@@ -4,7 +4,7 @@ const aiContoller = require("../controllers/ai.controller");
 const router = express.Router();
 // Controller -- but not created here. It just tells which contoller will run.
 
-router.get("/get-response",aiContoller.getResponse)
+router.post("/get-review",aiContoller.getReview)
 
 
 module.exports = router;
