@@ -168,3 +168,234 @@ console.log(letters);
 
 We can join them again by using the join method --
 letters = [...name].join("-");
+
+let fruits = ["apples","oranges","guavas"];
+let newfruits = [...fruits]; -- Shallow copy of array fruits.
+We can also join diffn arrays while copying like  -- 
+let newfruits = [...fruits, ...vegetables , "eggs" , "milk"];
+
+REST parameters --
+rest parameters = (...rest) allow a function work with a variable number of arguments by bundling them into an array.
+-- Bundles seperate elements into an array
+
+const food1 ="Pizza";
+const food2 ="Burger";
+const food3 = "Sushi";
+const food4 ="Ramen";
+
+function  openFridge(...foods){ // accepts a number of arguments and combine them into an array -- foods
+	console.log(foods);
+}
+
+openFridge(food1,foods,food3,food4);
+
+We use rest parameters to combine parameters and Spread operator to seperate individual elements from the array.
+Rest parameters also help in combining strings into one single string.
+
+function fullname(...strings){
+	return strings.join(" ");
+}
+console.log(fullname("Mr.", "Ronit" , "Dey"));
+
+-- em for font size relative to the parent.
+-- rem for font size relative to the root.
+
+Dice Roller code -- JS 
+const values = [ ];
+const images = [ ];
+for (let i=0 ; i<numOfDice ; i++){
+	const value = Math.floor(Math.random()*6)+1;
+	values.push(value);
+	images.push(`<img src="dice_images/${value}.png" alt="Dice : ${value}">`); -- Adds the image component to the Array.	
+}
+
+dicResult.textContent = `Dice: ${values.join(",")}`;
+dicImages.innerHTML = images.join(` `);
+
+CALLBACKS -- 
+a function that is passed as a argument to another function.
+
+Used to handle asynchronous operations:
+Reading a file
+Network requests
+Interacting with database.
+
+"Hey when ur done then call this next"
+
+To use a callback -- we use a function that is passed as an argument to another function.
+hello(goodbye); -- Dont add () after the function inside the arguments or we will call the function instantly.
+
+sum(displayConsole, 12, 15);
+
+function sum(callback , x , y){
+    let result = x+y;
+    callback(result);
+}
+
+function displayConsole(result){
+    console.log(result);
+}
+
+ARRAYS -- .forEach( )--
+method used to iterate over the elements of an array and apply a specified function (callback) to each element 
+
+array.forEach(callback) -- element index and array are provided.
+let numbers = [1,2,3,4,5,6];
+function display(element){
+    console.log(element);
+}
+
+numbers.forEach(display);
+
+-- .map( ) --
+accepts a callback and applies that function to each element of an array then return a new array.
+
+-- .filter( ) -- creates a new array by filtering out elements
+let numbers = [1,2,3,4,5,6];
+let evenNums = numbers.filter(isEven);
+
+function isEven(element){
+    return element % 2 === 0;
+}
+console.log(evenNums); --- returns [2,4,6]
+
+.reduce( ) -- reduces the elements of an array into a single value.
+
+** Can find max element by using Math.max( ) -- just like in Java
+
+Functions --
+func declarations -- define a reusable block of code that performs a specific task.
+func expressions -- a way to define functions as values or variables.
+
+const hello = function( ){    // Passing function as variable
+	console.log("hello!");
+}
+
+hello( ); -- normal calling
+setTimeout(hello , 3000)    -- function passed as argument.
+ -- function is executed after 3 seconds.(measured in milli-seconds)
+
+ We can pass entire functions as argument too in JS -- 
+ setTimeout(function( ){    // setTimeout(callback , time) --- accepts a callback from a function and a time to delay the execution of the function.
+ 	console.log("Hello");
+ } , 3000);
+
+const numbers = [1,2,3,4,5,6];
+const squares = numbers.map(function(element){
+	return Math.pow(element,2);
+});
+console.log(squares);
+
+Arrow Functions --
+
+Functions used in --
+Callbacks in asynchronous operations 
+High-order functions 
+Closures
+Event Listeners
+
+Arrow Functions -- Concise way to write function expressions good for simple functions that you use only once 
+(parameter) => some code.
+
+const hello = (name) => {console.log(`Hello! ${name}`)};    // arrow one liner function.
+hello("Ronit");
+
+OBJECTS in Javascript --
+A collection of related properties and/or methods. Can represent real world objects (people, products, places)
+objects = { key : value, function( )}
+
+const person = {
+	firstname : "Ronit",
+	lastname : "Dey",
+	age : 30,
+}
+
+console.log(person.age); -- gives value 30.
+
+this -- reference to the object where THIS is used (the object depends on the immediate context)
+person.name = this.name;
+
+const person = {
+	name : "Ronit",
+	favfood : "Pizza",
+	sayHello : function( ){console.log(`Say Hi to ${this.name}`)}
+}
+
+** this keyword doesnt work with Arrow functions and this. in that case still refers to the window and not the current object.
+
+CONSTRUCTORS in JS --
+Special method for defining the properties and methods of objects.
+
+function Car(make, model, year, colour){
+	this.make = make;
+	this.model = model;
+	this.year = year;
+	this.colour =colour;
+}
+
+const Car1 = new Car("Honda", "Civic", "2016", "Red");
+
+CLASS in JS --
+Provides a more structured and cleaner way to work with objects compared to
+traditional constructor functions ex. static keyword, encapsulation, inheritance etc.
+
+class Product {
+	constructor(name, price){
+		this.name = name;
+		this.price = price;
+	}
+	displayProduct( ){
+		console.log(`Procudt: ${this.name}`);
+	}
+}
+
+Static keyword -- 
+defines properties or methods that belong to a class itself rather than the objects created from that class 
+(class owns anything static, not the objects)  -- We dont need to create any object to use the property.
+
+ class Mathutil{
+ 	static PI = 3.14159;
+
+ 	static getDiameter(radius){
+ 		return radius *2;
+ 	}
+ }
+ To access static variable or function -- Classname.variable name -- Mathutil.PI , Mathutil.getDiameter( ).
+
+Inheritance in JS --
+allows a new class to inherit properties and methods from an existing class and helps with code reusability.
+
+We use the `extends` keyword to inherit from classes.
+class Animal {
+	alive = true;
+	sleep(){
+		console.log(`This ${this.name} is sleeping`);
+	}
+}
+class Rabbit extends Animal{
+	name = "Rabbit";
+}
+
+const rabbit = new Rabbit();
+
+// rabbit.alive = false;
+console.log(rabbit.alive);
+rabbit.sleep();
+
+
+SUPER  keyword in JS --
+Used in classes to call the constructor or access the properties and methods of a parent (Superclass)
+this -- used to specify the current object.
+super -- used to specify the parent object.
+
+For child classes extending from the parent class. We first have to run the constructor of the parrent class --
+using the super( ) method and then we can sun the constructors of the child class.
+
+
+Getters and Setters -- 
+Getter -- a special method that makes a property readable.
+Setter -- a special method that makes a property writable.
+
+Used to validate and modify a value when reading / writing a property.
+
+

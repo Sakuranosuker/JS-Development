@@ -1,0 +1,57 @@
+* {
+  margin:0%;
+  padding: 0%;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root{
+  height: 100%;
+  width: 100%;
+}
+
+main{
+  height: 100%;
+  width:100%;
+  padding: 2rem;
+  display: flex;
+  gap: 7.5px;
+}
+
+main .title{
+  text-align: center;
+}
+
+main .left, 
+main .right{
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 10px;
+}
+
+main .left{
+  border: 5px solid blueviolet;
+  background-color: rgb(0, 0, 0);
+  position: relative;
+}
+
+main .right{
+  background-color: rgb(195, 208, 220);
+  border: 5px solid blueviolet;
+}
+
+main .left .review{
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background-color: rgb(239, 78, 78);
+  color: black;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.7rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.623) ;
+}

@@ -2,3 +2,8 @@ React -- Javascript Library thats used to easily  build web applications.
 React is used to create components that function as building blocks. Like LEGOS.
 
 React use a syntax expansion of javascript called - JSX -- Javascript XML.
+
+To create react app -- Use npm create vite@latest
+For running the app -- cd my-react-app , npm install , npm run dev.
+For restarting the server --- cd enter the app in terminal and then npm run dev.
+ 
