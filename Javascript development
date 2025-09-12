@@ -398,4 +398,253 @@ Setter -- a special method that makes a property writable.
 
 Used to validate and modify a value when reading / writing a property.
 
+class Rectangle{
+    constructor(width,height){
+        this.width = width;
+        this.height = height;
+    }
+    set width(newWidth){
+        if(newWidth>0)
+            this._width = newWidth;    // _ used before the name is used for indicating private property.
+        else
+            console.error("Width must be positive integer");
+    }
+    set height(newHeight){
+        if(newHeight>0)
+            this._height = newHeight;
+        else
+            console.error("Height must be positive integer");
+    }
 
+    get width(){
+        return this._width.toFixed(1);    // can use aditional logic too if required. to perform other modifications.
+    }
+    get height(){
+        return this._height.toFixed(1);
+    }
+    get area(){
+        return (this._width * this._height);
+    }
+
+}
+
+const rectangle = new Rectangle(13 , 44);
+console.log(rectangle.width);
+console.log(rectangle.height);
+console.log(rectangle.area);    // Although not a property but still can be called like one bcz of the getter.
+
+
+If the setters are set then to get the properties getters have to be written or else the properties are not readable.
+
+
+Destructuring in JS --
+Allows us to extract values from arrays and objects then assign them to variables in a convinient way.
+[ ] -- to perform array destructuring
+{ } -- to perform object destructuring
+
+[colors[0] , colors[4]] = [colors[4] , colors[0]]  for array colors
+
+const [color1 , color2 , color3] = colors;
+
+const (firstname , lastname , age , job="Unemployed") = person1. where person1 is a object.
+
+
+Nested Objects in JS --
+
+Objects inside of other objects. Allows you to represent more complex data structures.
+Child Object is enclosed by a Parent Object.
+
+Person(Address{ } , ContactInfo{ }) -- Person is the parent object and Address and Contact Info are the child objects.
+
+const person = {
+	fullname : "Ronit",
+	age : 22,
+	isStudent : true,
+	hobbies : ["karate", "swimming", "painting"],
+	address: {
+		street : "37 NS Road",
+		city : "Kolkata"
+	}
+}
+
+console.log(person.address.street); -- accessing the property of the child object.
+
+for (const property in person.address){
+	console.log(person.address[property]);
+}
+
+
+Array of Objects in JS --
+
+const fruits = [{name: "apple", color:"red", calories:95},
+					  {name: "orange", color:"orange", calories:105},
+					  {name: "watermelon", color:"green", calories:95}
+					  {name: "pineapple", color:"yellow", calories:130}];
+
+console.log(fruits[1].calories);
+
+fruits.push({name:"guava", color:"green", calories:77}); -- for adding new objects.
+fruits.pop() -- to remove an element.
+
+fruits.splice(1 , 2); -- for splicing through the elements.
+
+// forEach -- 
+forEach -- fruits.forEach(fruit => console.log(fruit.name));
+// map --
+const fruitnames = fruits.map(fruit =>fruit.color);
+//filter --
+const yellowfruits = fruits.filter(fruit => fruit.color === "yellow");
+//reduce --
+const maxfruits = fruits.reduce((max,fruit) => fruit.calories > max.calories ? fruit : max);
+
+SORTING -- sort( )
+method used to sort elements of an array in place. Sorts elements as strings in lexicographical order, not alphabetical order.
+lexicographical = (alphabet + numbers + symbols) as strings.
+
+let fruits = ["Apple", "Orange", "Guava","Coconut"];
+fruits.sort()
+
+const people = [{name:"Ronit", age:22}, {name:"Sunit" , age:55}]
+people.sort((a,b) => a.age - b.age) -- sorts based on age.
+
+for reverse -- people.sort((a,b) => b.age - a.age) -- sorts in reverse order.
+
+For sorting based  on string -- people.sort((a,b) => a.name.localeCompare(b.name));
+
+
+SHUFFLE using JS -- (OPTIONAL)
+const cards = ['A', 1,2,3,4,5,6,7,8,9,10,'K','Q','J'];
+
+Fisher- Yates Algo for shuffling --
+function  shuffle(array){
+	for(let i = array.length -1; i>0; i--){
+		const random = Math.floor(Math.random( ) * (i+1));
+
+		[array[i] , array[random]] = [array[random] , array[i]]; // swapping the elements of the array.
+	}
+}
+
+Date Objects in JS --
+Objects that contain values that represent dates and times. These date objects can be changed and formatted.
+const date = new Date();
+console.log(date) -- gives the current date
+
+FORMAT -- Date(year, month, day, hour, minute, second, ms)
+console.log(date);
+
+const date = new Date(17000000000); // -- tells computer to give the time in interval of so many ms from the epic time -- the time when computer thinks time began.
+
+const year = date.getFullYear(); -- gives year;
+const month = date.getMonth(); -- gives month;
+
+.getDate() , .getHours() , .getMinutes() , .getSeconds(); .getDay() -- gives the day of the week.
+
+.set____( ) -- used to set date.
+
+* Comparing dates -- const date1 = new Date("2023-12-31");
+								  const date2 = new Date("2024-01-01");
+if(date2>date1){
+	console.log("Happy New Year");
+}
+
+CLOSURES -- 
+
+A function defined inside another function, the inner function has access to the variables and scope of the outer function.
+Allow for private variables and state maintenence. Used frequently in JS frameowrks : React Vue and Angular.
+Maintains the scope of the variable and makes it private.
+Provides privay as its difficult to alter the private values stored inside the function and not some values within it.
+function createincrement(){
+    let count = 0;
+
+    function increase(){
+        count ++;
+        console.log(`Count Increased by 1 : ${count}`);
+    }
+    return {increase}; // -- > Here the function returns kind of a object of the function.
+    //  The mother function increment() acts as kind of a class in this scenario.
+}
+
+const counter = createincrement(); // means the createincrement returns the function increase, thus counter variable is itself the increase function now.
+for(let i=0;i<20;i++){
+    counter.increase(); // Thus for using the increase function we can just call the counter() variable with () brackets.
+}
+
+
+New chapter -- setTimeout() --
+
+function in JS that allows you to schedule the execution of a function after the amount of time( milliseconds).
+Times are approximate as they vary based on the JS runtime env. -- so dont use for anything precise.
+
+let settimeID = setTimeout(callback , delay);
+
+We can cancel a timeout function by using the clearTimeout(settimeID) -- we have to pass the setTimeout id for it to work.
+
+
+ES6 Module - An external file that contains reusable code that can be imported into other Javascript files. Write reusable code for different apps. 
+Can contain variables, classes, functions and more. Introduced as a part of ECMAscript 2015 update.
+
+Create reusable code that can be used in different programs.
+
+For eg -- export function addition(a,b){ let sum = a+b; return sum;} -- placed inside add.js file
+
+For using the function elsewhere -- import {addition} /*destructuring the function*/ from 'Path of the file'.
+
+for using the function -- const answer = addition(10,30); // Now answer stores the sum of the nos.
+
+
+Synchronous and ASYNCHRONOUS Code -- 
+
+Synchronous -- Executes line by line consecutively in a sequential manner. 
+Code that waits for an operation to complete.
+
+Asynchronous -- Allows nultiple operations to be performed concurrently without waiting. 
+Doesnt block the execution flow and allows the program to continue I-O operations, network requests, fetching data etc.
+Handled with Callbacks , Promises , Async- Await etc.
+
+function func1(callback){
+    setTimeout(() => {console.log(`Function 1`), callback()}, 3000); // originally function 1 was supposed to be executed after 3000 seconds and in that way other statements were executed before it. 
+  // But after using callback, the function 1 runs first and then the other functions run. Thus this is a example of waiting in case of asynchronous code.
+}
+
+function func2(){
+    console.log(`Function 2`);
+    console.log(`Function 3`);
+    console.log(`Function 4`);
+}
+
+func1(func2);
+
+
+ERROR --
+An object that is created to represent a problem that occurs. Occur often with user input or establishing a connection.
+
+*TypeError --- occurs when an object tries to access something that doent exist.
+* We prematurely exit the program. Errors when uncaught cause disturbance in the flow of our program.
+
+Errors can be issued for several types of problems like --
+* Network issues , Promise issues , Security issues.
+
+Error handling -- 
+try{ } -- Encloses code that might potentially cause an error.
+catch{ } -- Catch and handle any error thrown from try.
+finally{ } -- (optional) -- Always executes. used mostly for clean up ex. close files, close connections, release resources etc.
+
+try{
+    console.log(`Hello`);
+}
+catch(error){
+    console.error(error);
+}
+finally{
+    console.log("Finally Block executed always");
+}
+console.log(`Reached end of line`);
+
+** Can also throw custom errors -- 
+if(divisor == 0){
+	throw new Error(`You can't divide by zero.`);
+}
+
+if(isNaN(dividend) || isNaN(divisor)){
+	throw new Error(`Not a number.`);
+}

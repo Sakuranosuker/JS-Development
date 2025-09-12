@@ -426,55 +426,182 @@
 
 
 // Inheritance -- 
-class Animal {
-	alive = true;
-	sleep(){
-		console.log(`This ${this.name} is sleeping`);
-	}
-}
-class Rabbit extends Animal{
-	name = "Rabbit";
-}
+// class Animal {
+// 	alive = true;
+// 	sleep(){
+// 		console.log(`This ${this.name} is sleeping`);
+// 	}
+// }
+// class Rabbit extends Animal{
+// 	name = "Rabbit";
+// }
 
-const rabbit = new Rabbit();
+// const rabbit = new Rabbit();
 
-// rabbit.alive = false;
-console.log(rabbit.alive);
-rabbit.sleep();
+// // rabbit.alive = false;
+// console.log(rabbit.alive);
+// rabbit.sleep();
 
 
 // Getters and Setters --
-class Rectangle{
-    constructor(width,height){
-        this.width = width;
-        this.height = height;
-    }
-    set width(newWidth){
-        if(newWidth>0)
-            this._width = newWidth;
-        else
-            console.error("Width must be positive integer");
-    }
-    set height(newHeight){
-        if(newHeight>0)
-            this._height = newHeight;
-        else
-            console.error("Height must be positive integer");
-    }
+// class Rectangle{
+//     constructor(width,height){
+//         this.width = width;
+//         this.height = height;
+//     }
+//     set width(newWidth){
+//         if(newWidth>0)
+//             this._width = newWidth;
+//         else
+//             console.error("Width must be positive integer");
+//     }
+//     set height(newHeight){
+//         if(newHeight>0)
+//             this._height = newHeight;
+//         else
+//             console.error("Height must be positive integer");
+//     }
 
-    get width(){
-        return this._width.toFixed(1);
-    }
-    get height(){
-        return this._height.toFixed(1);
-    }
-    get area(){
-        return (this._width * this._height);
-    }
+//     get width(){
+//         return this._width.toFixed(1);
+//     }
+//     get height(){
+//         return this._height.toFixed(1);
+//     }
+//     get area(){
+//         return (this._width * this._height);
+//     }
 
+// }
+
+// const rectangle = new Rectangle(13 , 44);
+// console.log(rectangle.width);
+// console.log(rectangle.height);
+// console.log(rectangle.area);    // Although not a property but still can be called like one bcz of the getter.
+
+
+// Nested Objects --
+
+// class Person{
+//     constructor(name,age,...address){
+//         this.name = name;
+//         this.age = age;
+//         this.address = new Address(...address);
+//     }
+// }
+
+
+
+// class Address{
+//     constructor(street, city, country){
+//         this.street = street;
+//         this.city = city;
+//         this.country = country;
+//     }
+// }
+
+// const person1 = new Person("Ronit",22,"37 NS Road","Kolkata","India");
+//  console.log(person1.address.street);
+
+
+// Array of Objects --
+// const fruits = [{name: "apple", color:"red", calories:95},
+// 					  {name: "orange", color:"orange", calories:105},
+// 					  {name: "watermelon", color:"green", calories:95},
+// 					  {name: "pineapple", color:"yellow", calories:130}];
+
+// console.log(fruits[1].calories);
+
+// Sorting -- .sort()
+
+let fruits = ["Apple", "Orange", "Guava","Coconut"];
+fruits.sort()
+console.log(fruits);
+
+// CLOSURES -- 
+
+// Normal function statement. Everytime the function is called the count variable gets reset to 1.
+// function increment(){
+//     let count = 0;
+//     count++;
+//     console.log(`Count is : ${count}`);
+// }
+
+// increment();
+// increment();
+// increment();
+
+// Using closures --
+
+// function createincrement(){
+//     let count = 0;
+
+//     function increase(){
+//         count ++;
+//         console.log(`Count Increased by 1 : ${count}`);
+//     }
+//     return (increase); // -- > Here the function returns kind of a object of the function.
+//     //  The mother function increment() acts as kind of a class in this scenario.
+// }
+
+// const counter = createincrement(); // means the createincrement returns the function increase, thus counter variable is itself the increase function now.
+// for(let i=0;i<20;i++){
+//     counter(); // Thus for using the increase function we can just call the counter() variable with () brackets.
+// }
+
+// Or while returning from the mother function we use the { } -- curly braces and return the function name.
+// Then the outer function acts like a class and we can use the inner fucntions like methods of the class. 
+
+// function createincrement(){
+//     let count = 0;
+
+//     function increase(){
+//         count ++;
+//         console.log(`Count Increased by 1 : ${count}`);
+//     }
+    
+//     function getCount(){
+//         return count;
+//     }
+//     return {increase,getCount};
+// }
+
+// const counter = createincrement();
+// counter.increase();
+// counter.getCount();
+
+
+// SET-TIME-OUT --
+// setTimeout(() => {
+//     window.alert(`HELLOOOO`);
+//    console.log(`Say Hello`); 
+// }, 5000);
+
+
+// Asynchronous function -- 
+
+// function func1(callback){
+//     setTimeout(() => {console.log(`Function 1`), callback()}, 3000); // originally function 1 was supposed to be executed after 3000 seconds and in that way other statements were executed before it. 
+//   // But after using callback, the function 1 runs first and then the other functions run. Thus this is a example of waiting in case of asynchronous code.
+// }
+
+// function func2(){
+//     console.log(`Function 2`);
+//     console.log(`Function 3`);
+//     console.log(`Function 4`);
+// }
+
+// func1(func2);
+
+
+// Error handling --
+try{
+    console.log(`Hello`);
 }
-
-const rectangle = new Rectangle(13 , 44);
-console.log(rectangle.width);
-console.log(rectangle.height);
-console.log(rectangle.area);    // Although not a property but still can be called like one bcz of the getter.
+catch(error){
+    console.error(error);
+}
+finally{
+    console.log("Finally Block executed always");
+}
+console.log(`Reached end of line`);
