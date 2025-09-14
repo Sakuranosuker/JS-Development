@@ -514,9 +514,9 @@
 
 // Sorting -- .sort()
 
-let fruits = ["Apple", "Orange", "Guava","Coconut"];
-fruits.sort()
-console.log(fruits);
+// let fruits = ["Apple", "Orange", "Guava","Coconut"];
+// fruits.sort()
+// console.log(fruits);
 
 // CLOSURES -- 
 
@@ -595,13 +595,111 @@ console.log(fruits);
 
 
 // Error handling --
-try{
-    console.log(`Hello`);
-}
-catch(error){
-    console.error(error);
-}
-finally{
-    console.log("Finally Block executed always");
-}
-console.log(`Reached end of line`);
+// try{
+//     console.log(`Hello`);
+// }
+// catch(error){
+//     console.error(error);
+// }
+// finally{
+//     console.log("Finally Block executed always");
+// }
+// console.log(`Reached end of line`);
+
+// DOM --
+// console.dir(document);
+// document.title = "My Webby";
+
+// let username = "Ronit";
+// document.getElementById("Hemlo").textContent += username === "" ? "Guest" : username;
+
+// Adding and Removing HTML elements --
+// const newH1 = document.createElement("h1");
+// newH1.textContent = "I Like Pizza";
+// newH1.id = "MyH1";
+// newH1.style.color = "red";
+// newH1.style.textAlign="center";
+// document.body.prepend(newH1); 
+// Append -- adds to the end of the body/parent. Prepend -- adds to the starting of the body/parent.
+
+// document.getElementById("box1").append(newH1)
+
+// let mybox = document.getElementById("box1");
+// mybox.onclick = function(){
+//     mybox.textContent = `Aww you clicked me 😍`;
+//     mybox.style.fontSize = "2rem";
+// }
+
+// can also be done using eventlisteners --
+
+// function changeColor(event){
+//     event.target.style.backgroundColor = "tomato";
+//     event.target.textContent = "Aww you touched me 😍";
+// }
+// mybox.addEventListener("click", changeColor);  // Passing the event and callback , can also pass an anonymous function or arrow function.
+
+// mybox.addEventListener("mouseover", event => {
+//     event.target.textContent = "Dont You do It 😤";
+//     event.target.style.backgroundColor = "red";
+// });
+
+// mybox.addEventListener("mouseout", event => {
+//     event.target.style.backgroundColor = "white";
+//     event.target.textContent = "Ooouufff Relief 😰";
+// });
+
+
+// Moving image --
+
+// const mybox = document.getElementById("box1");
+// const movement = 10;
+// let x=0;
+// let y=0;
+
+// document.addEventListener("keydown", event => {
+//     console.log(event);
+//     if(event.key.startsWith("Arrow")){
+//         switch(event.key){
+//             case "ArrowUp":
+//                 y -= movement;
+//                 break;
+//             case "ArrowDown":
+//                 y += movement;
+//                 break;
+//             case "ArrowLeft":
+//                 x -= movement;
+//                 break;
+//             case "ArrowRight":
+//                 x += movement;
+//                 break;
+//         }
+//         mybox.style.top = `${y}px`;
+//         mybox.style.left = `${x}px`;
+//     }
+//     else{
+//         mybox.textContent="Wrong Key Pressed";
+//     }
+// });
+
+// document.addEventListener("keydown", event =>{
+//     mybox.textContent = "Yeee 😰";
+//     mybox.style.backgroundColor = "tomato";
+// })
+// document.addEventListener("keyup", event =>{
+//     mybox.textContent = "Click Me 😎";
+//     mybox.style.backgroundColor = "lightgreen";
+// })
+
+
+//Showing and Hiding HTML elements --
+
+// document.getElementById("button").addEventListener("click", event => {
+//     if(document.getElementById("box1").style.display === "none"){
+//         document.getElementById("box1").style.display = "block";
+//         document.getElementById("button").textContent = "Hide";
+//     }
+//     else{
+//         document.getElementById("box1").style.display = "none";
+//         document.getElementById("button").textContent = "Show";
+//     }
+// }); 

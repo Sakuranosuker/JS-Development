@@ -648,3 +648,225 @@ if(divisor == 0){
 if(isNaN(dividend) || isNaN(divisor)){
 	throw new Error(`Not a number.`);
 }
+
+
+DOM -- Document Object model in JS --
+Object{ } that represents the page that you see in the web browser and provides you with an API to interact with.
+Web browser constructs the DOM when it loads an HTML document, and structures all the elements in a tree like representation.
+Javascript can access the DOM to dynamically change the content, structure and style of a web page.
+
+HTML element acts as the root element.
+
+console.dir(document); -- shows all the components of the document.
+document.title = "My Webby";
+document.body.style.backgroundColor = "hsl(0, 0%, 15%)";    -- alters the background color without CSS.
+
+let username = "Ronit";
+document.getElementById("Hemlo").textContent += username === "" ? "Guest" : username;
+
+
+ELEMENT SELECTORS --
+Methods used to target and manipulate HTML elements. 
+They allow you to select one or multiple HTML elements from the DOM.
+
+document.getElementById() -- Element or null  *** Use this
+document.getElementsClassName() -- HTML Collection
+document.getElementByTagName() -- HTML Collection -- access elements by html tags.
+document.querySelector() -- Element or null
+document.querySelectorall() -- Nodelist -- they are like html collection but are static and do not udate automatically in the dom.    ***Use this for multiple selection as gives built-in methods.
+But they have build-in methods that can be used unlike Html lists.
+
+CSS properties when selected using DOM they have a camel case naming convention but when they are selected in CSS then they have a hyphenated - naming convention.
+
+For eg --
+const myHeading = document.getElementById("Heading");
+myHeading.style.backgroundColor = "yellow";
+
+Suppose we have three elements of class name fruits then by this method all the elements with the class name are chosen.
+const fruits = document.getElementsClassName("fruits");    --- returns a iterable HTML collection.
+
+fruits[0].style.backgroundColor = "yellow";
+
+for (let fruit of fruits){
+	fruit.style.backgroundColor = "red";
+}
+
+We can also typecast the HTML Collection as a array --
+Array.from(fruits).forEach(fruit => {
+	fruit.style.backgroundColor = "blue";
+});
+
+const h4ele = document.getElementByTagName("h4");    -- collects all h4 elements.
+h4ele[0].style.background = "red";
+
+const element = document.querySelector(".fruits");  -- selects first element from "fruits" classnamed elements.
+
+const fruits = documen.querySelectorAll(".fruits");
+fruits[1].style.backgroundColor = "red";
+
+fruits.forEach(fruit=> {    // Node list has build in methds unlike HTML document.
+	fruit.style.backgroundColor = "red";
+})
+
+DOM Navigation in JS -
+
+The process of navigating through the structure of an HTML document using JS.
+
+,firstElementChild
+.lastElementChild
+.nextElementSibling
+.previousElementSibling
+.parentElement
+.children
+
+---- firstElementChild ----
+access the first child under a parent component -- for eg the first element in a list.
+
+const element = document.getElementById("fruits");
+const child = element.firstElementChild;
+
+---- lastElementChild ----
+access the last child under a parent component -- for eg the last element in a list.
+const lastchild = element.lastElementChild;
+
+---- nextElementSibling ----
+access the next child after a child component -- for eg the next element after the first child in a multi child list.
+const nextSibling = element.nextElementSibling;
+
+<body>
+	<ul id="fruits">    -- parent
+		<li id="apple">apple<li>    -- child
+		<li id ="orange">orange<li>    --sibling
+
+---- previousElementSibling ----
+access the previous child sibling. for eg here apple is the previous sibling of orange.
+previous sibling of the first element doesnt exist.
+
+const prevsib = document.getElementById("orange").previousElementSibling;
+
+---- parentElement ----
+when selcted a child element using this helps in accessing the parent element of the child.
+const parent = document.getElementById("orange").parentElement; -- selects the entire list of fruits.
+
+---- children ----
+helps in accessing all the children of the parent element.
+const children = element.children;
+Array.from(children).forEach(child => {
+	child.style.backgroundColor ="red";
+});
+
+child[2].style.backgroundColor ="red";    -- can also select specific element using the indexes.
+
+
+ADDING AND CHANGING HTML ELEMENTS in JS - 
+
+1. Create the element
+2. Add the attributes or properties.
+3. Append element to DOM
+
+Or Remove HTML Element.
+
+const newH1 = document.createElement("h1");
+newH1.textContent = "I Like Pizza";
+newH1.id = "MyH1";
+document.body.append(newH1); -- appends to the last of all the body elements.
+
+document.body.prepend(newH1); -- appends to the beginning of the body element.
+
+document.body.insertBefore(new-element, current-element);
+
+If ids are not available we can select the whole grp of element using querySelectorAll and then iterate in them using indexes.
+document.body.insertBefore(newH1, boxes[0]);
+
+Remove elements -- document.body.removeChild(newH1); -- Select the parent element and then remove the child from it.
+
+
+** EventListeners -- Listen for specific events to create interactive web page events: click, mouseover, mouseout, .addEventListener( event, callback)
+
+let mybox = document.getElementById("box1");
+// mybox.onclick = function(){
+//     mybox.textContent = `Aww you clicked me 😍`;
+//     mybox.style.fontSize = "2rem";
+// }
+
+// can also be done using eventlisteners --
+
+function changeColor(event){
+    event.target.style.backgroundColor = "tomato";
+    event.target.textContent = "Aww you touched me !!";
+}
+mybox.addEventListener("click", changeColor); 
+
+Passing the event and callback , can also pass an anonymous function or arrow function.
+
+mybox.addEventListener("click", event => {
+	event.target.style.backgroundColor = "tomato";
+});
+
+Key events in JS --
+
+keydown = registers event when pressing down a key.
+keyup = registers event when releasing pressed key.
+arrowup /arrowdown / arrowleft / arrowright = detects arrow key events.
+
+document.addEventListener("keydown", event => {
+    console.log(event);
+});
+
+Showing and Hiding HTML elements in JS --
+ We can use the .display property with block/none options or the .visibility property with visible/hidden options
+ Using display does not keep the position of the element reserved and it is shown when the block option is selected.
+ However, using visibility property the position of the element is reserved and is shown when the show property is enabled.
+
+
+NodeList -- 
+Static collection of HTML elements by (id, class, element) Can be created by using queryelectorAll( ).
+Similar to an array but no (map, filter, reduce).They have a forEach method.
+Nodelists wont update to automatically reflect changes.
+
+let buttons = document.querySelectorAll(".myButton"); Creates a nodelist of all the buttons.
+
+cost newButton = document.createElement("button");
+newButton.textContent = "Button 5";
+newButton.classList = "myButton"; -- used to set the class of the new button, inplace of using just class, we use classlist.
+
+document.body.appendChild(newButton);
+
+But even after making the new button in DOM, it doesnot get updated in the nodelist buttons and we have to run the querySelectorAll again.
+This is because the nodelist is static and does not get updated with the DOM.
+
+Remove an element --
+buttons.forEach(button => {
+	button.addEventListener("click", event =>{
+		event.target.remove();    // removes the element from the page but does  not remove it from the nodelist as nodelist is not updatatble.
+		buttons = document.querySelectorAll(".myButton");    // again reusing the Query selector updates athe nodelist after every button is removed and then removes it from the nodelist also.
+	});
+});
+
+CLASSLISTS -- 
+Element property in JS used to interact with elements list of classes. (CSS classes). 
+Allows you to make reusable classes for many elements across your webpage.
+
+add( ), remove( ), toggle( Remove if parent, Add if not), replace( oldclass, newclass), contains( )
+
+const button = document.getElementById("myButton");
+button.classList.add("enabled");    -- adds the class enabled to the button.
+button.classList.remove("enabled");    -- removes the class from the element.
+button.classList.toggle("enabled"); -- adds the class if not there and removes if there.
+
+
+const button = document.getElementById("myButton");
+button.classList.add("enabled");    
+button.addEventListener("click" , event =>{
+	event.target.classList.replace("enabled", "disabled");
+});
+
+We can use the same classes in different HTML elements.
+For many elements having same class. We can create a nodelist using querySelectorAll 
+and then iterate in it for the different elements.
+
+button.forEach(button => {
+	button.addEventListener("click" , event =>{
+		event.target.classList.toggle("enabled");
+	})
+})
