@@ -1,8 +1,8 @@
-// Printing in JS -- console.log('Hello to Javascript');                
-// Sending an alert window to the user -- window.alert(`Namaste to JS`); 
+// Printing in JS -- console.log('Hello to Javascript');
+// Sending an alert window to the user -- window.alert(`Namaste to JS`);
 
 // Changing the text content of text element.
-// document.getElementById("UserH1").textContent = 'Hello'; 
+// document.getElementById("UserH1").textContent = 'Hello';
 // For including string anywhere can use single quotes, double quotes or backticks. But backticks are the best to use, gives no problems.
 // document.getElementById("myPara") .textContent = 'I like pizza';
 
@@ -10,7 +10,7 @@
 // SHIFT + ALT+ N for running code.
 
 // let x; // declaration
-// x = 123; // assignment 
+// x = 123; // assignment
 // console.log(x)
 // console.log(`You are ${x} years old`)
 // console.log(typeof x)
@@ -94,10 +94,9 @@
 // if(age>18)
 //     console.log(`You can enter the site`);
 // else
-//     console.log(`You cannot enter the site`); 
+//     console.log(`You cannot enter the site`);
 
-
-// Checkbox tutorial -- 
+// Checkbox tutorial --
 // let checkbox = document.getElementById("mycheckbox");
 // let visa = document.getElementById("visa");
 // let mastercard = document.getElementById("mastercard");
@@ -107,7 +106,6 @@
 // let operator = document.getElementById("operator-viewing");
 // let payment = document.getElementById("payment-status");
 // const check = document.getElementById("check");
-
 
 // submit.onclick = function () {
 //     if(checkbox.checked){
@@ -141,7 +139,6 @@
 // let age = 19;
 // console.log(age>18 ? (age>21 ? `Adult` : `Teen`) : `Minor`);
 
-
 //  String operations -
 // let username = "10Ronit";
 // if(username.startsWith(` `)){
@@ -166,12 +163,10 @@
 // console.log(`The username is : ${email.slice(0, email.indexOf("@"))}`);
 // console.log(`The extension is: ${email.slice(email.indexOf("@")+1)}`); // all after the index of "@" in the string.
 
-
 // Method calling --
 // let username = "  roNItdeY  ";
 // username = username.trim().charAt(0).toUpperCase() + username.trim().slice(username.charAt(0)+1).toLowerCase();
 // console.log(username);
-
 
 // Loops --
 // let loggedin = false;
@@ -270,7 +265,6 @@
 //     console.log("Goodbye!");
 // }
 
-
 // Example 2
 // sum(displayConsole, 12, 15);
 
@@ -331,7 +325,6 @@
 // }
 // console.log(evenNums);
 
-
 // const ages = [22,12,33,52,17,18,99]
 // const adults = ages.filter(isAdult);
 // console.log(adults);
@@ -349,7 +342,6 @@
 //     // In the next iteration the new value returned from the previous iteration beocmes the value of the accumulator.
 // }
 
-
 // Functions in JS --
 
 // setTimeout(function( ){
@@ -362,11 +354,10 @@
 // });
 // console.log(squares);
 
-
 // Arrow functions --
 
 // function hello(){
-//     console.log("Hello!");    // normal function 
+//     console.log("Hello!");    // normal function
 // }
 
 // const hello = (name) => {console.log(`Hello! ${name}`)};    // arrow one liner function.
@@ -376,7 +367,6 @@
 // let squares = numbers.map((element) => {return Math.pow(element,2)});
 // console.log(squares);
 
-
 // Objects in JS --
 
 // const person = {
@@ -385,7 +375,6 @@
 // 	sayHello : function(){console.log(`Hi I am ${this.name}`)} // this is used to reference to the current object
 // }
 // person.sayHello();
-
 
 // Constructors in JS --
 
@@ -401,7 +390,6 @@
 // console.log(Car1.model);
 // console.log(Car1.year);
 // console.log(Car1.colour);
-
 
 // Classes in JS --
 // class Product {
@@ -424,8 +412,7 @@
 // totalPrice = product.calculateTotal(tax);
 // console.log(`Total Price after Tax: $${totalPrice}`);
 
-
-// Inheritance -- 
+// Inheritance --
 // class Animal {
 // 	alive = true;
 // 	sleep(){
@@ -441,7 +428,6 @@
 // // rabbit.alive = false;
 // console.log(rabbit.alive);
 // rabbit.sleep();
-
 
 // Getters and Setters --
 // class Rectangle{
@@ -479,7 +465,6 @@
 // console.log(rectangle.height);
 // console.log(rectangle.area);    // Although not a property but still can be called like one bcz of the getter.
 
-
 // Nested Objects --
 
 // class Person{
@@ -489,8 +474,6 @@
 //         this.address = new Address(...address);
 //     }
 // }
-
-
 
 // class Address{
 //     constructor(street, city, country){
@@ -502,7 +485,6 @@
 
 // const person1 = new Person("Ronit",22,"37 NS Road","Kolkata","India");
 //  console.log(person1.address.street);
-
 
 // Array of Objects --
 // const fruits = [{name: "apple", color:"red", calories:95},
@@ -518,7 +500,7 @@
 // fruits.sort()
 // console.log(fruits);
 
-// CLOSURES -- 
+// CLOSURES --
 
 // Normal function statement. Everytime the function is called the count variable gets reset to 1.
 // function increment(){
@@ -550,7 +532,7 @@
 // }
 
 // Or while returning from the mother function we use the { } -- curly braces and return the function name.
-// Then the outer function acts like a class and we can use the inner fucntions like methods of the class. 
+// Then the outer function acts like a class and we can use the inner fucntions like methods of the class.
 
 // function createincrement(){
 //     let count = 0;
@@ -559,7 +541,7 @@
 //         count ++;
 //         console.log(`Count Increased by 1 : ${count}`);
 //     }
-    
+
 //     function getCount(){
 //         return count;
 //     }
@@ -570,18 +552,16 @@
 // counter.increase();
 // counter.getCount();
 
-
 // SET-TIME-OUT --
 // setTimeout(() => {
 //     window.alert(`HELLOOOO`);
-//    console.log(`Say Hello`); 
+//    console.log(`Say Hello`);
 // }, 5000);
 
-
-// Asynchronous function -- 
+// Asynchronous function --
 
 // function func1(callback){
-//     setTimeout(() => {console.log(`Function 1`), callback()}, 3000); // originally function 1 was supposed to be executed after 3000 seconds and in that way other statements were executed before it. 
+//     setTimeout(() => {console.log(`Function 1`), callback()}, 3000); // originally function 1 was supposed to be executed after 3000 seconds and in that way other statements were executed before it.
 //   // But after using callback, the function 1 runs first and then the other functions run. Thus this is a example of waiting in case of asynchronous code.
 // }
 
@@ -592,7 +572,6 @@
 // }
 
 // func1(func2);
-
 
 // Error handling --
 // try{
@@ -619,7 +598,7 @@
 // newH1.id = "MyH1";
 // newH1.style.color = "red";
 // newH1.style.textAlign="center";
-// document.body.prepend(newH1); 
+// document.body.prepend(newH1);
 // Append -- adds to the end of the body/parent. Prepend -- adds to the starting of the body/parent.
 
 // document.getElementById("box1").append(newH1)
@@ -647,7 +626,6 @@
 //     event.target.style.backgroundColor = "white";
 //     event.target.textContent = "Ooouufff Relief 😰";
 // });
-
 
 // Moving image --
 
@@ -690,7 +668,6 @@
 //     mybox.style.backgroundColor = "lightgreen";
 // })
 
-
 //Showing and Hiding HTML elements --
 
 // document.getElementById("button").addEventListener("click", event => {
@@ -702,4 +679,165 @@
 //         document.getElementById("box1").style.display = "none";
 //         document.getElementById("button").textContent = "Show";
 //     }
-// }); 
+// });
+
+// Callback Hell --
+
+// function task1(callback){
+//     setTimeout(() =>{
+//         console.log("Task 1 is complete");
+//         callback();
+//     }, 3000);
+// }
+// function task2(callback){
+//     setTimeout(() =>{
+//         console.log("Task 2 is complete");
+//         callback();
+//     }, 2000);
+// }
+// function task3(callback){
+//     setTimeout(() =>{
+//         console.log("Task 3 is complete");
+//         callback();
+//     }, 1000);
+// }
+// function task4(callback){
+//     setTimeout(() =>{
+//         console.log("Task 4 is complete");
+//         callback();
+//     }, 500);
+// }
+
+// task1();
+// task2();
+// task3();
+// task4();
+// setTimeout(() => console.log("All Tasks Are Complete") , 3500);
+
+// nesting Callbacks -- Callback Hell !!
+// task1(() => {
+//     task2(() => {
+//         task3(() => {
+//             task4(() => console.log("All tasks completed"));
+//         });
+//     });
+// });
+
+// function WalkDog() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const walkedDog = true;
+//       if (walkedDog) {
+//         resolve("You walk the Dog 🐕"); // resolve message given after the promise is resolved.
+//       } else {
+//         reject("You didnt walk the Dog 🐕"); // shows this message if the work is not done.
+//       }
+//     }, 3500);
+//   });
+// }
+// function CleanKitchen() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const cleanedKitchen = true;
+//       if (cleanedKitchen) {
+//         resolve("You clean the Kitchen 🔪"); // resolve message given after the promise is resolved.
+//       } else {
+//         reject("You didnt clean the Kitchen 🔪"); // shows this message if the work is not done.
+//       }
+//     }, 2500);
+//   });
+// }
+// function TakeoutTrash() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       const takenTrashOut = true;
+//       if (takenTrashOut) {
+//         resolve("You take out the Trash 🗑️"); // resolve message given after the promise is resolved.
+//       } else {
+//         reject("You didnt take out the Trash 🗑️"); // shows this message if the work is not done.
+//       }
+//     }, 1500);
+//   });
+// }
+
+// Without promises we have to use callbacks for calling all the methods and may lead to callback hell.
+
+// Thus we use Promises and we can call all the functions using Method Chaining.
+
+// WalkDog()
+//   .then((value) => {
+//     console.log(value);
+//     return CleanKitchen();
+//   })
+//   .then((value) => {
+//     console.log(value);
+//     return TakeoutTrash();
+//   })
+//   .then((value) => {
+//     console.log(value);
+//     console.log("All Chores Completed");
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+// Async / Await in JS --  gives us a
+
+// async function doChores() {
+//   try {
+//     const walkDogResult = await WalkDog();
+//     console.log(walkDogResult);
+
+//     const cleanKitchenResult = await CleanKitchen();
+//     console.log(cleanKitchenResult);
+
+//     const takeOutTrashResult = await TakeoutTrash();
+//     console.log(takeOutTrashResult);
+
+//     console.log("You have completed the work!");
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
+// doChores();
+
+// JSON --
+
+// const names = `[{
+//     "name":"Ronit",
+//     "age": 30,
+//     "isEmployed": true,
+//     "hobby": ["painting","swimming","designing"]
+// },
+// {
+//     "name":"Fabio",
+//     "age": 88,
+//     "isEmployed": true
+// }]`
+// const jsonString = JSON.parse(names);    // after paring becomes a JS array.
+// console.log(names);
+
+// fetch("person.json")
+//       .then(response => response.json())
+//       .then(value => console.log(value))
+//       .catch(error => console.log(error));
+
+async function fetchData(){
+
+    const pokemonName = document.getElementById("pokeInput").value.toLowerCase();
+    
+
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
+        if(!response.ok){
+            throw new Error("Could not fetch resource");
+        }
+        const data = await response.json();
+        console.log(data);
+
+        const pokeImg = data.sprites.front_default;
+        const imgElement = document.getElementById("pokeImg");
+
+        imgElement.src = pokeImg;
+        imgElement.style.display = "block";
+}

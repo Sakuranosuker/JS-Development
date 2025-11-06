@@ -25,8 +25,17 @@ body{
     align-items: center;
     position: absolute;
 }
-.button{
-    margin: 5px;
-    text-align: center;
-    margin-left: 75px;
+#pokeSubmit{
+    font-size: 1rem;
+    border-radius: 5px;
+}
+#pokeInput{
+    font-size: 1.5rem;
+    border-radius: 5px;
+    background-color: rgb(251, 189, 145);
+    cursor: text;
+}
+img{
+    width: 100px;
+    height: 100px;
 }

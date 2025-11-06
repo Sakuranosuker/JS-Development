@@ -51,4 +51,441 @@ function getName() {
 
 If the value of x is no where in the program but we try to print x then it gives error that x is not defined. But if in any part of the program x is present then although on printing first it does not get the value of x but it prints 'undefined', as x will be defined in the memory, although yet it cannot get the exact value of x.
 
-If we write the function as arrow function then it acts as a variable and not as a function. -- it stays undefined on 
+If we write the function as arrow function then it acts as a variable and not as a function. -- it stays undefined on memory allocation.
+
+If we define our function as var getname = function (){  } -- Then also it works as a variable and not as a function. It then stores undefined again during allocation.
+
+
+SCOPE ,  Scope change and Lexical env. ---
+
+Scope in JS is related to Lexical environment.
+
+function a( ){
+    console.log(b);  -- Here value of b should come as undefined as b is not defined yet inside the function or outside. Its defined later. 
+    But the value comes as 10.
+}
+var b = 10;
+a( );
+
+** But if b is defined inside the function and tried to access outside it then it given b not defined error.
+
+function a( ){
+    var b = 10;
+    c( );
+    function c( ){
+
+    }
+}
+a( );
+console.log(b);
+
+Scopes -- What is the scope of b and is scope of b inside the function ?? 
+
+Whenever a execution context is created, a lexical enviironment is also created.
+Its the local memory with the lexical environment of the parent.
+Thus here a is inside the  lexical environment of the global execution phase and thus gets referrence to the variables of the global space.
+
+Lexical means in hierarchy or in order.
+In case of global the lexical environment refers to null as it does not have any parent. Thus when it tries to access any variable present inside the function it does not get any referrence.
+
+Thus this whole chain of lexical environments is known as scope chain.
+Lex of b --> Lex of a( ) --> Lex of global. --> NULL
+
+If the lexical envs. are exhausted and the variable is not found then the variable is not present in the scope chain.
+
+LET and CONST --
+Their declarations are hoisted but they are hoisted very diffnly.
+
+var declared variables can be accessed before declaring them because of hoisting. 
+But const/let declared variables cannot be accessed before declaring them as they are not stored in the global memory space but in a different memory space.
+
+Thus var/const declared variables can be accessed only after they have been assigned with a value. -- else gives a reference error.
+
+Temporal dead zone -- time between where the let/const variables are hoisted with undefined in a diffn memory space and till they are assigned with a value.
+And when variables are in temporal dead zone they cannot be accessed. and a referrence error is thrown. -- Cannot access var bfore initialization.
+
+The const/let variable is not attached to the window object as its stored apart from the global space and not in it.
+
+In case of const/let we cannot re-declare the variable with the same name. But it was re-declarable in case of var declaration.
+
+CONST  very strict. We cannot declare a const var without assigning a value with it. -- Gives a syntax error. -- missing syntax.
+If we initialize a const variable and then again re initialize it later with another value then also it gives a type error -- assignment to a const type of variable.
+
+Whenever can use const use const , after that prefer using let as will not run into uncertain errors then.
+For normal day to day coding dont use var or use it very contiously.
+
+BLOCk, SCOPE and Shadowing --
+
+Block {  } is also known as compund statement // Bound by { } curly braces -- combines multiple JS scripts into a scope.
+We group multiple statements together so that they can be used in place where JS expects a single statement.
+
+{
+    var a = 10; // hoisted in the global scope.
+    let b = 20;  //  hoisted in the block scope. -- seperate memory space reserved for the block.
+    const c = 30;  //  hoisted in the block scope.
+}
+
+LET AND CONST ARE THUS CALLED BLOCK SCOPED -- cannot be accessed outside the block but the var can be used outside the block also.
+
+Shadowing in JS --
+
+var a = 10;
+{
+    var a = 1000;    // this var with the same name shadows the var from outside. On accessing after shadowing it gives the value of a after shadowing , 1000 in this case.
+    console.log(a); -- takes the value from a inside the block and output = 1000
+}
+console.log(a); // After shadowing the value is changed as both a  refer to the global scope only and are accessed from there.
+
+This is an example of shadowing.
+
+When using let/const -- 
+But if the variable outside is declared using const or let then they are store in a script diffn from the global scope 
+Then there are 3 types of scope present -- block, global and script.
+
+And on refering from inside the block they give value of variable as given in the block. -- stored in the block scope
+On refering the value from outside the block give the same value as defined outside the block and not same. -- as its stored in the script scope and not in the global scope.
+
+let b = 100
+{
+    var b = 10;
+    console.log(b); --  gives output 10
+}
+console.log(b)  --  gives output 100
+
+Illegal shadowing -- CANNOT shadow a let with a var. -- as cannot alter the scope of the variable.
+However a var can be shadowed with a const or let as then the scope of the var is not exceeded.
+
+Each block in JS follows the lexical scope here also. Every var follows the hierarchical block.
+
+CLOSURES in JS --
+
+A function bound together with its lexical environment. -- function along with its lexical scope.
+We can store functions as variables in JS also.
+In JS we can return functions from another function as well as pass function as parameter to another function also.
+
+fucntion x(){
+    var a = 10;
+    function y(){
+        console.log(a);
+    }
+    return y; // returns the function as a whole.
+}
+
+var z = x( );  // gets the return from function x , of function y and stores it in the variable z.
+console.log(z); 
+
+On returning the function y remembers its lexical scope even though all instance of x has ended in that moment. A closure was returned -- function + its scope.
+It remembers the references to the variables and the code within the function and is stored in the variable after its returned.
+
+function z( ){
+    var b = 900;
+    function x( ){
+        var a = 7;
+        function y( ){    // Here function y remembers the scope of both its parent x( ) and also its parents parent z( ). 
+            console.log(a,b);    // These values are stored and not garbage collected by Java even if the functions x and z complete their execution as function y still has their need.
+        }
+        y( );
+    }
+    x( );
+}
+z( );
+Function y( ) here forms 2 closures -- one for x( ) containing variable a and another for z( ) containing variable b.
+Common uses if closures -- 
+Module designing pattern , Currying , Functions like once -- function which runs only once.
+Memonize , Maintaining state in async world , setTimeouts , Iterators etc.
+
+function x( ){
+    var i=0;
+    setTimeout(function( ){
+        console.log(i);
+        }, 1000);
+    console.log("Hello");
+}
+Here the function fiirst prints Hello and then prints the value of i. 
+Javascript waits for no one. When the setTimeout is executed it stores the callback function along with the refernce of i here and then goes to the next line.
+Executes the next line and Then after waiting for 1000 ms it executes the function.
+
+JAVASCRIPT WAITS FOR NO ONE --  
+
+
+function x( ){
+    for(var i=0;i<=5;i++){
+        setTimeout(function(){
+            console.log(i);
+            }, i*1000);
+    }
+    console.log("Namaste Javascript");
+}
+x( );
+Here it seems that the function should print 1,2,3,4,5 but in actual simulation it prints 6,6,6,6,6
+This is because everytime the loop runs the setTimeout( ) creates a callback of the function with the same reference to i and not for each value of i.
+Thus by the time the first setTimeout completes its execution after waiting for 1000 ms the loop has already completed running and the value of i is 6. 
+Then all the other setTimeouts also give the value of i as 6 as they refer to the same value of i.
+
+But if we use let there to declare i. as let or const is block scoped thus each time the loop runs a new setTimeout is created with a new reference to i. -- a fresh new copy of i.
+Thus in this case the output comes as 1,2,3,4,5 as expected.
+
+
+But if we have to do it properly with var only and cant use let or const then --
+Everytime we need a new copy of i. 
+Thus we encase the setTimeout within another function and call it everytime the loop runs with a new copy of i. 
+Thus everytime the new encasing function is called, a seperate copy of i is created. and output comes as 1,2,3,4,5
+
+
+function x( ){
+    for(var i=0;i<=5;i++){
+        function close(x){
+            setTimeout(funciton( ){
+                console.log(x);
+                }, x *1000);
+        }
+        close(i);
+    }
+}
+x( );
+
+Anonymous functions -- function without a name.
+
+First class functions - 
+
+function x( ){
+    // This is a function statement.
+}
+
+Functions can be assigned to a variable too. Thus there functions act like values.
+This is known as function expression --
+var b = function ( ){ console.log("Hello"); }
+
+Major diffn between these two is of hoisting 
+if we call both the functions before intializing them then function a() works properly as it gets defined in the memory allocation phase.
+But the function b() does not work properly and gives an error as during memory allocation the variable b gets stored as undefined and not as the including function. It gets stored with the function later during initialization.
+
+Function declaration -- function statement is also called function declaration. Same thing.
+
+Anonymous functions  -  They do not have their own identity.  - - They have no name.
+ function ( ){ } - -   Used in a place where the functions are used as values.
+
+Name function expression - - - function with a name put in as a expression.
+var b = function xyz( ){  } - - -  But here the function cannot be called directly by xyz( ). Throws a error as xyz not defined.
+This is because the function is defined in the scope of he variable only. and cannot be accessed directly.
+
+The local variables used in the function definition or heading - - -  are known as paramaters
+And the variables used when called the function are known as arguments.
+
+Functions are the heart of java script. 
+In JS we can also return a function from a function.  function  a( ){  return function xyz( ) {  }; };
+
+These abilities to use functions as values, to be passed as arguments and to be returned out of another functions is known as first class functions.
+This ability of functions to be used as values makes the functions as first class citizens in javascript.
+
+Functions defined with let/const variables - - act in the same way as normal let/const variables work.
+
+
+CALLBACk functions in JS -- helps us to work asynchronously in a synchronous single threaded language like JS.
+
+Functions are sent as callbacks in another function to be called by that controller function at a later time.
+
+Javascript has one main thread or one call stack and when it gets blocked because of a lengthy or complex function, then its known as blocking the main thread. -- and then no other lines of the code gets iterated as the execution gets stuck on the lengthy function.
+Thus its always better to run the complex or time taking functions asynchronously in JS.
+
+
+EVENT Listeners 
+- Used to create a event listener with a callback function as its handler - It executes when the event has occured.
+
+A good practice is to remove the event listeners when they are not being used.
+If they are not removed then they stay taking up space in the memory as we dont know when it may be required again.
+But if the event listener is removed then it releases all the space or variables taken up by it.
+
+Event Loop --
+
+Browser has many super powers like local storage, timers, console, location etc.
+And to use them we use different APIs --
+setTimeout( ) , DOM APIs , fetch( ) , localStorage , console , location.
+
+JS helps us in working with these super powers. For eg a setTimeout makes use of the timer super power of the browser.
+
+First the Global execution context is created and the execution of the main code starts.
+
+During setTimeout - The timer is set and keeps running and after its complete the callback from the setTimeout needs to enter into the call stack for continuing the execution
+But it cannot go directly into the Callstack. It goes through the callback queue.
+
+The Event loop then checks inside the callback queue to find any pending functions and pushes them into the Callstack Then the callback function executes properly.
+
+
+In case of Event Listeners --
+document.  - - -   anything is the usage of the DOM API of the browser.
+After the event is created a callback to the function is registerd and the event is attached to it.
+
+When the event occurs the callback enters into the callback queue and sits there for the event loop.
+
+The Event Loop continuously monitors the callback queue and the call stack. Working on any remaining callbacks.
+When the callstack is empty and the global execution context has ended then It pops the callbacks one by one from the queue and executes them.
+
+
+FETCH Function --
+fetch - - helps in fetching a API call.
+fetch function returns a promise and we have to pass a callback function to the Web API environment which gets executed when the promise gets resolved.
+
+Microtask Queue - - higher priority . Whatever is in this queue gets executed first and the functions in the callback queue are executed later.
+
+The callback function from fetch functions , promises or network calls goes to the microtask queue.
+After the main thread of the program is executed. the event loop then checks the microtask queue and the callback queue. Then the callbacks in the microtask queue are executed first followed by the callbacks in the callback queue.
+
+Promises and Mutation Observer - - goes into the microtask queue.
+Starvation of the callback queue - - Happens when the taska keep coming into the micro task queue and the remaining callback in the callback queue never gets executed.
+
+Javascript Run-Time Environment - - 
+It has the JS Engine , the Web APIs , the event loop , the callback queue , the microtask queue etc.
+
+Some APIs are there that are present in the browser as well as in node js. For eg setTimeout or console.
+
+Every browser have their own  JS engine for eg in google chrome v8 engine in present.
+These engines follow the ECMA script standards. 
+
+The first JS engine developed in the world - developed by the founder of JS - SpiderMonkey working in the mozilla firefox browser.
+
+JS Engine is like a normal code written in low level language - for eg v8 is written in c++. Not like a machine but a piece of code.
+It takes a high level code and splits out the machine code executed by the machine.
+
+Architecture - Takes human readable code as input and then gooes through three major steps.
+Parsing , Compilation and Execution.
+
+During Parsing phase - code broken down into tokens. let a = 7 - Here are 4 tokens. Its then sent to a syntax parser - takes the code and converts it into a AST - Abstract syntax tree. - astexplorer.net
+
+Compilation and execution phase - - goes hand in hand.
+JS jas JIT - - Just in time compilation. 
+
+Interpretter - -  takes the code and starts executing line by line. Its Fast
+Compiler - - Whole code is compiled before being executed. Its more Efficient.
+
+JS can work as both a interpretted language or a compiled language.
+JS was first made as a interpretted language but it uses just in time compilation. best of both worlds.
+
+AST goes to interpretter and it converts high level code to byte code and in this step takes help from the compiler to optimize the code as much as it can. - - Just in time compilation.
+In diffn JS Engines have diffn algorithms to do it. Its a multiple phase process.
+
+Some JS engines have Ahead of Time Compilation - - AOT
+In this case the compiler takes a piece of code that will be executed later and then tries to optimize it as much as it can. Also produces the byte code which then goes to the execution phase.
+
+EXECUTION phase - - uses the memory heap and the callstack.
+
+Memory heap - place where all the memory is stored - constantly in sync with the callstack the garbage collector.
+All variables and functions are assigned memory.
+
+Garbage collector - frees up the memory space. sweeps garbage. Uses - Mark and sweep algorithm. - Read about it.
+Many other opimizations that the compiler does to the code. - Like inlining, copy elision, inline cashing etc. - Read about them.
+
+Every browser wants to make their JS engine fastest in the world. Right now v8 engine of google is the fastest.
+
+v8 has the ignition interpreter and the turbofan optimizing compiler.
+Architecture - - - > 
+JS source code - Parser - Abstract syntax tree - Interpreter Ignition - Compiler Turbofan - Optimized code - ByteCode
+v8 has orinoco and oilpan garbage collectors.
+
+Trust issues with setTimeout( ) - - a setTimeout of 5 seconds may not always wait for 5 seconds exactly. It may take 6s or even 10s depending on the call stack at the time.
+
+JS is a single threaded language. Thus its better to not block the main thread of the code. Else the code gets stuck and does not execute further.
+
+Code for waiting for exact no of seconds - - 
+let startDate = new Date( ).getTime( );
+let endDate = startDate;
+while(endDate< startDate + 10000){    - - -  the while loop runs till the endDate is > startDate + 10000 ms / 10 s. - Code waits for 10s as the while loop runs.
+    endDate = new Date( ).getTime( );
+}
+console.log("While expires");
+  
+After the while loop makes the code wait for 10 s then the next lines are executed.
+
+JS has only 1 callstack so its light weight , fast and has just in time compilation.
+
+** Even if setTimeout has to wait for 0 seconds it still creates a closure and has to wait for the global execution context to be empty before it can be executed from the closure queue.
+
+Higher order functions - - 
+A function which takes another function as an argument or returns another function from it.
+
+function x( ){    - - - x is the callback function
+    console.log("Namaste");
+}
+
+function y(x){    - - - y is the higher order function
+    x( );
+}
+
+const radius = [3,6,12,7];
+
+const area = function (radius){
+    return 2 * Math.PI * radius;
+};
+
+const calculate = function (radius, logic){
+    const output = [];
+    for(let i = 0; i < radius.length; i++){
+        output.push(logic(radius[i]));
+    }
+    return output;
+};
+
+console.log(calculate(radius, area));
+# Here the area function is being sent to the calculate function as logic to be used with the radius.
+# Similar to how map function works.
+
+Array.prototype.calculate( ) - makes the function available for all the arrays. The calculate function then acts as a dot function. 
+We can use - radius.calculate(area) - calculates the area from the radius.
+
+MAP FILTER REDUCE - - - 
+
+map - - - 
+
+const arr = [1,2,3,4,5];
+
+function triple(x) {
+    return x*3;
+}
+const output = arr.map(triple);
+console.log(output);
+
+Can also be written as - - output = arr.map((x) => {x.toString(2)});
+
+
+filter - - -
+
+function isOdd(x){
+    return x % 2 != 0;
+}
+const output = arr.filter(isOdd);
+
+
+reduce - - - 
+
+IMP point --
+acc - Accumulator used to accumulate the sum.
+curr - Current used to indicate the currennt variable.
+
+const output = arr.reduce( function (acc , curr){
+    acc + = curr;
+    return acc;
+}, 0); - - - 0 is the initial value of the accumulator.
+
+
+const output = arr.reduce( function (acc,curr){
+    if(acc > curr){
+        acc = curr;
+    }
+    return acc;
+},0);
+
+For eg - - from a list of users find how many people present of how much age - -
+const output = users.reduce( function (acc,curr){
+    if(acc[curr.age]){
+        acc[curr.age] = ++acc[curr.age];
+    }
+    else{
+        acc[curr.age] = 1;
+    }
+    return acc;
+    },{ });
+
+Main power of these function is chaining - - We can chain map filter and reduce.
+
+const output = users.filter((x) => x.age < 30).map((x) => x.firstName);
+console.log(output); 

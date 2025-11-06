@@ -868,5 +868,91 @@ and then iterate in it for the different elements.
 button.forEach(button => {
 	button.addEventListener("click" , event =>{
 		event.target.classList.toggle("enabled");
-	})
-})
+	});
+});
+
+Notes -- 
+CSS -- for selecting all items with same class --  img.slideList -- (element.Classname)
+
+document.addEventListener("DOMContentLoaded", initializeSlider); --- helps in running a function when the DOM loads.
+
+
+CALLBACK Hell --
+A situation in JS where callbacks are nested within other callbacks to the degree where the code is difficult to read.
+Old pattern to handle asynchronous functions. Use promises + async/await to avoid it. 
+
+task1(() => {
+    task2(() => {
+        task3(() => {
+            task4(() => console.log("All tasks completed"));
+        });
+    });
+});
+PROMISES -- >
+An object that manages asynchronous operations. Wrap a Promise Object around {asynchronous code} 
+"I Promise to return a value" PENDING -- > RESOLVED or REJECTED.
+
+new Promise((resolve , reject) => {asynchronous code})
+
+function WalkDog() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const walkedDog = true;
+      if (walkedDog) {
+        resolve("You walk the Dog 🐕"); // resolve message given after the promise is resolved.
+      } else {
+        reject("You didnt walk the Dog 🐕"); // shows this message if the work is not done.
+      }
+    }, 3500);
+  });
+}
+
+
+ASYNC / AWAIT --
+
+Async  makes a function return a promise. 
+Await makes a function wait for a promise.
+
+Allows you write asynchronous code in a synchronous manner. 
+Async doesnt have resolve or reject parameters -- thus it returns a kind of empty promise.
+
+If a funcion has a resolve/reject promise then adding async to it really doesnt benefit us. 
+
+Everything after await is placed in an event queue.
+
+
+JSON --
+
+Javascript Object Notation -- data-interchange format used for exchanging data between a server and a web application. 
+JSON files {key : value} or {value1, value2, value3}
+
+JSON.stringify( ) == converts a JS object to a JSON string.
+JSON.parse( ) == converts a JSON string to a JS object.
+
+JSON formats are thus one long string to represent that object or array.
+
+const names = ["Ronit", "Fabio", "Horatio", "Capello"];
+
+const jsonString = JSON.stringify(names);
+console.log(names);
+
+fetch("person.json") // returns a promise
+        .then( response => response.json( )) // returns a promise.
+        .then(value => console.log(value))
+        .catch(error => console.log(error));
+
+FETCH -- a function in JS used for making HTTP requests to fetch resources.
+{JSON style data, images, files}. Simplifies asynchronous data fetching in Javascript  and 
+used for interacting with APIs to retrieve and send data asynchronously over the web. 
+
+fetch(url , {options})
+OPTIONS -- GET -- to get a resource, POST -- to send some data, PUT -- to replace some data, DELETE -- to delete some data.
+
+Status codes -- 
+Informational responses -- 100 to 199
+Successful responses -- 200 to 299
+Redirection messages -- 300 to 399
+Client error responses -- 400 to 499
+Server error responses -- 500 to 599
+
+ 

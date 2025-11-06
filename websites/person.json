@@ -1,0 +1,11 @@
+[{
+    "name":"Ronit",
+    "age": 30,
+    "isEmployed": true,
+    "hobby": ["painting","swimming","designing"]
+},
+{
+    "name":"Fabio",
+    "age": 88,
+    "isEmployed": true
+}]

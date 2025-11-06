@@ -88,7 +88,7 @@ Async , Await , Fetch -->
 // A lot of times we may be fetching and dealing with data and it may lead to breaking React.
 // If the data or field is not present.
 
-const fetchData = async(animalName)=> {
+fetchData = async(animalName)=> {
 
     const data = await fetch(`myapi.com/search/${animalName}`); // Searching for animals in the api.
     const hello = data.person?.name; // Helps in checking if the person variable is created with name attribute before fetching.

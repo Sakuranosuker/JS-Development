@@ -1,7 +1,9 @@
 const express = require('express');
-const app = express(); // creating a new instance of backend server
 const aiRoutes = require('./routes/ai.routes');
+const cors = require('cors')
 
+const app = express(); // creating a new instance of backend server
+app.use(cors())
 app.use(express.json())
 app.get('/', (req,res) => { 
 // Test Routes -- to see if server is working or not.
