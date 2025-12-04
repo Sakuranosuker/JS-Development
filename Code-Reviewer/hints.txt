@@ -1,0 +1,2 @@
+npx nodemon in Backend to run the backend server.
+npm run dev

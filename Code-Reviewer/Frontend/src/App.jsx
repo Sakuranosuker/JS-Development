@@ -6,6 +6,7 @@ import "prismjs/components/prism-python"
 import "prismjs/components/prism-java"
 import Editor from "react-simple-code-editor"
 import Axios from "axios"
+import Markdown from "react-markdown"
 import "./App.css"
 
 function App() {
@@ -38,18 +39,19 @@ function App() {
               padding={10}
               style={{
                 fontFamily: '"Fira code", "Fira Mono", monospace',
-                fontSize: 14,
-                height: "100%",
+                fontSize: 17,
                 width: "100%",
-                backgroundColor: "black",
-                borderRadius: 0.25 + "rem",
+                minHeight: "100%",
+                height: "auto",
+                borderRadius: "0.35rem",
+                overflow: "auto",
               }}
             />
           </div>
           <button className="review" onClick={reviewCode}>Review</button>
         </div>
         <div className="right">
-          {reviewResult}
+          <Markdown>{reviewResult}</Markdown>
         </div>
       </main>
     </>

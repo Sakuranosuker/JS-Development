@@ -16,29 +16,42 @@ main{
   width:100%;
   padding: 2rem;
   display: flex;
-  gap: 7.5px;
+  gap: 1rem;
 }
 
-main .title{
+.main-heading {
   text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  color: blueviolet;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 1px;
 }
 
 main .left, 
 main .right{
   height: 100%;
   flex-basis: 50%;
-  border-radius: 10px;
+  border-radius: 7px;
+  border: 5px solid blueviolet;
+  overflow: hidden;
 }
 
 main .left{
-  border: 5px solid blueviolet;
+  
   background-color: rgb(0, 0, 0);
   position: relative;
 }
 
 main .right{
-  background-color: rgb(195, 208, 220);
-  border: 5px solid blueviolet;
+  background-color: rgb(0, 0, 0);
+  padding: 2rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  overflow-y: auto;
+  overflow-x: auto;
 }
 
 .left .code, 
@@ -48,13 +61,17 @@ main .right{
   width: 100%;
   margin: 0;
   background-color: black;
+  line-height: 1.5rem;
+  overflow-y: auto;
+  overflow-x: auto;
 }
+
 main .left .review{
   position: absolute;
   bottom: 1rem;
-  right: 1rem;
+  right: 1.5rem;
   background-color: rgb(239, 78, 78);
-  color: black;
+  color: rgb(253, 253, 253);
   padding: 0.5rem 0.7rem;
   border-radius: 0.7rem;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -62,4 +79,10 @@ main .left .review{
   cursor: pointer;
   user-select: none;
   box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.623) ;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+main .left .review:hover{
+  transform: scale(1.05);
+  opacity: 0.9;
 }
